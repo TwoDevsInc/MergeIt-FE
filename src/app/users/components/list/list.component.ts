@@ -14,12 +14,21 @@ export class ListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.usersService.getUsers().subscribe(
-      users => this.users = users
-    )
+    this.getUsers();
   } 
 
   users : User[] = [];
 
+  getUsers(){
+    this.usersService.getUsers().subscribe(
+      users => this.users = users
+    )
+  }
+
+  deleteUser(id : number){
+    this.usersService.deleteUser(id).subscribe(
+      () => this.getUsers()
+    );
+  }
 
 }

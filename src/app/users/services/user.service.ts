@@ -21,7 +21,7 @@ export class UserService {
     return this.http.get<User>(`${this.API_USERS_URL}/${id}`);
   }
 
-  createUser(user : User): Observable<User>{
+  addUser(user : User): Observable<User>{
     return this.http.post<User>(`${this.API_USERS_URL}/add`,user);
   }
 
