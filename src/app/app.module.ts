@@ -4,15 +4,21 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { UsersModule } from './users/users.module';
+import { AuthModule } from './auth/auth.module';
+import { LoginComponent } from './auth/components/login/login.component';
+import { RegisterComponent } from './auth/components/register/register.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    UsersModule
+    UsersModule,
+    AuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]
