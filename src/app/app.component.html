@@ -1,17 +1,28 @@
 <h1>Merge IT APP!</h1>
-
+<h1>Bootstrap</h1>
 <hr>
 
-<div class="container bg-dark">
-    <div class="row">
-      <div class="col-sm">
-        One of three columns
-      </div>
-      <div class="col-sm">
-        One of three columns
-      </div>
-      <div class="col-sm">
-        One of three columns
+
+
+
+<!-- Botón modal Login -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal">
+    Iniciar sesión
+</button>
+  
+  <!-- Modal -->
+  <div class="modal fade " id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header bg-primary">
+          <h3 class="modal-title text-white" id="loginModalLabel">Inicio de sesión</h3>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true" class="text-white">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <login></login>
+        </div>
       </div>
     </div>
   </div>
