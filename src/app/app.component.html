@@ -3,30 +3,59 @@
 <hr>
 
 
-
-
-
+<div class="container">
 <!-- Botón modal Login -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal">
-    Iniciar sesión
+<button type="button" class="btn btn-primary mr-2" data-toggle="modal" data-target="#loginModal">
+  Iniciar sesión
 </button>
-  
-  <!-- Modal -->
-  <div class="modal fade " id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header bg-primary">
-          <h3 class="modal-title text-white" id="loginModalLabel">Inicio de sesión</h3>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true" class="text-white">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <login></login>
-        </div>
 
+<!-- Botón modal Registro -->
+<button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#registroModal">
+  Registrarse
+</button>
+
+<!-- Modal Login-->
+<div class="modal fade " id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-primary">
+        <h3 class="modal-title text-white" id="loginModalLabel">Inicio de sesión</h3>
+        <button type="button" class="close p-0" data-dismiss="modal" aria-label="Close">
+          <h3 class="bi bi-x text-white"></h3>
+        </button>
+        
       </div>
+      <div class="modal-body">
+        <login></login>
+      </div>
+
     </div>
+  </div>
 </div>
 
-<register></register>
+<!-- Modal Registro-->
+<div class="modal fade " id="registroModal" tabindex="-1" role="dialog" aria-labelledby="registroModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header p-0 bg-primary">
+        <h3 class="modal-title text-white m-3" id="registroModalLabel">Registrarse</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <h3 class="bi bi-x text-white"></h3>
+        </button>
+        
+      </div>
+      <div class="modal-body">
+        <register></register>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+
+
