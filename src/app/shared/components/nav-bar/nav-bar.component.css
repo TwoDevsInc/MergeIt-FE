@@ -5,3 +5,8 @@
 .nav-link, a{
   color: white;
 }
+
+#logoIMG{
+  height: 50px;
+  width: 170px;
+}
