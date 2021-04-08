@@ -9,13 +9,15 @@ import { MainComponent } from './home/main/main.component';
 import { SharedModule } from './shared/shared.module';
 import { ServerUrlInterceptor } from './interceptors/server-url.interceptor';
 import { ProjectsModule } from './projects/projects.module';
+import { NewTeamComponent } from './teams/components/new-team/new-team.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainComponent
+    MainComponent,
+    NewTeamComponent
   ],
   imports: [
     BrowserModule,

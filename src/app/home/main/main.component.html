@@ -11,9 +11,10 @@
           </a>
         </div>
         <div class="list-group-item list-group-item-action-disabled border-0">
-          <div class="row"><span class="col-9">Equipos de Trabajo</span><button class="btn p-0 border-0"><i
+          <div class="row"><span class="col-9">Equipos de Trabajo</span><button type="button" class="btn p-0 border-0" data-toggle="modal" data-target="#addTeamModal"><i
                 class="bi bi-plus-circle col"></i></button></div>
         </div>
+
 
 
         <!-- Plantilla Ejemplo Equipo -->
@@ -22,8 +23,8 @@
           <div>
             <button class="list-group-item list-group-item-action border-0" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
               Merge It
+              <i class="bi bi-caret-left-fill col-1"></i>
               <i class="bi bi-caret-down-fill col-1"></i>
-              <i class="bi bi-caret-up-fill col-1"></i>
             </button>
             <div class="collapse" id="collapseExample">
               <a href="#" class="list-group-item list-group-item-action border-0">
@@ -41,12 +42,12 @@
             </div>
           </div>
           <div>
-            <button class="list-group-item list-group-item-action border-0" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-              Merge It
+            <button class="list-group-item list-group-item-action border-0" type="button" data-toggle="collapse" data-target="#collapseExampleDos" aria-expanded="false" aria-controls="collapseExampleDos">
+              Banana Phone
+              <i class="bi bi-caret-left-fill col-1"></i>
               <i class="bi bi-caret-down-fill col-1"></i>
-              <i class="bi bi-caret-up-fill col-1"></i>
             </button>
-            <div class="collapse" id="collapseExample">
+            <div class="collapse" id="collapseExampleDos">
               <a href="#" class="list-group-item list-group-item-action border-0">
                 <div class="row"><div class="col-1"></div><i class="bi bi-info-circle-fill col-1"></i><span class="col">Información</span></div>
               </a>
@@ -61,48 +62,7 @@
               </a>
             </div>
           </div>
-          <div>
-            <button class="list-group-item list-group-item-action border-0" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-              Merge It
-              <i class="bi bi-caret-down-fill col-1"></i>
-              <i class="bi bi-caret-up-fill col-1"></i>
-            </button>
-            <div class="collapse" id="collapseExample">
-              <a href="#" class="list-group-item list-group-item-action border-0">
-                <div class="row"><div class="col-1"></div><i class="bi bi-info-circle-fill col-1"></i><span class="col">Información</span></div>
-              </a>
-              <a href="#" class="list-group-item list-group-item-action border-0">
-                <div class="row"><div class="col-1"></div><i class="bi bi-calendar2-range col-1"></i><span class="col">Tableros</span></div>
-              </a>
-              <a href="#" class="list-group-item list-group-item-action border-0">
-                <div class="row"><div class="col-1"></div><i class="bi bi-people-fill col-1"></i><span class="col">Miembros</span></div>
-              </a>
-              <a href="#" class="list-group-item list-group-item-action border-0">
-                <div class="row"><div class="col-1"></div><i class="bi bi-gear-fill col-1"></i><span class="col">Configuración</span></div>
-              </a>
-            </div>
-          </div>
-          <div>
-            <button class="list-group-item list-group-item-action border-0" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-              Merge It
-              <i class="bi bi-caret-down-fill col-1"></i>
-              <i class="bi bi-caret-up-fill col-1"></i>
-            </button>
-            <div class="collapse" id="collapseExample">
-              <a href="#" class="list-group-item list-group-item-action border-0">
-                <div class="row"><div class="col-1"></div><i class="bi bi-info-circle-fill col-1"></i><span class="col">Información</span></div>
-              </a>
-              <a href="#" class="list-group-item list-group-item-action border-0">
-                <div class="row"><div class="col-1"></div><i class="bi bi-calendar2-range col-1"></i><span class="col">Tableros</span></div>
-              </a>
-              <a href="#" class="list-group-item list-group-item-action border-0">
-                <div class="row"><div class="col-1"></div><i class="bi bi-people-fill col-1"></i><span class="col">Miembros</span></div>
-              </a>
-              <a href="#" class="list-group-item list-group-item-action border-0">
-                <div class="row"><div class="col-1"></div><i class="bi bi-gear-fill col-1"></i><span class="col">Configuración</span></div>
-              </a>
-            </div>
-          </div>
+
         </div>
 
 
@@ -113,12 +73,41 @@
 
 
 
-
+<!-- Parte derecha / datos -->
 
       </div>
       <div class="col-sm" id="data">
+        <div class="list-group-item list-group-item-action-disabled border-0">
+          <div class="row border-bottom pb-2">
+            <i class="bi bi-calendar2-range col-sm-1"></i>
+            <span>Tus Paneles</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- Modal de Añadir nuevo equipo -->
+
+<div class="modal fade " id="addTeamModal" tabindex="-1" role="dialog" aria-labelledby="addTeamModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-primary">
+        <h3 class="modal-title text-white" id="addTeamModalLabel">Nuevo Equipo de Trabajo</h3>
+        <button type="button" class="close p-0" data-dismiss="modal" aria-label="Close">
+          <h3 class="bi bi-x text-white"></h3>
+        </button>
 
       </div>
+      <div class="modal-body">
+        <new-team></new-team>
+      </div>
+
     </div>
   </div>
 </div>
