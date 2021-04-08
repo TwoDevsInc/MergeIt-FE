@@ -1,21 +1,18 @@
-<h1>Merge IT APP!</h1>
 
-<hr>
-
-
-<div class="container">
+<!-- <div class="container"> -->
 <!-- Botón modal Login -->
-<button type="button" class="btn btn-primary mr-2" data-toggle="modal" data-target="#loginModal">
+<!-- <button type="button" class="btn btn-primary mr-2" data-toggle="modal" data-target="#loginModal">
   Iniciar sesión
-</button>
+</button> -->
 
 <!-- Botón modal Registro -->
-<button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#registroModal">
+<!-- <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#registroModal">
   Registrarse
-</button>
+</button> -->
+
 
 <!-- Modal Login-->
-<div class="modal fade " id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
+<!-- <div class="modal fade " id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -24,7 +21,7 @@
         <button type="button" class="close p-0" data-dismiss="modal" aria-label="Close">
           <h3 class="bi bi-x text-white"></h3>
         </button>
-        
+
       </div>
       <div class="modal-body">
         <login></login>
@@ -32,10 +29,10 @@
 
     </div>
   </div>
-</div>
+</div> -->
 
 <!-- Modal Registro-->
-<div class="modal fade " id="registroModal" tabindex="-1" role="dialog" aria-labelledby="registroModalLabel"
+<!-- <div class="modal fade " id="registroModal" tabindex="-1" role="dialog" aria-labelledby="registroModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -44,7 +41,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <h3 class="bi bi-x text-white"></h3>
         </button>
-        
+
       </div>
       <div class="modal-body">
         <register></register>
@@ -54,8 +51,56 @@
   </div>
 </div>
 
+</div> -->
+
+
+
+<nav-bar></nav-bar>
+
+
+
+<div class="container" id="mainContainer">
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="list-group">
+        <div class="list-group-item list-group-item-action">
+          <div class="row">
+            <div class="col-sm-1">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar2-range" viewBox="0 0 16 16">
+                <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H2z"/>
+                <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V4zM9 8a1 1 0 0 1 1-1h5v2h-5a1 1 0 0 1-1-1zm-8 2h4a1 1 0 1 1 0 2H1v-2z"/>
+              </svg>
+            </div>
+            <div class="col-sm-10">
+              <a>Inicio</a>
+            </div>
+          </div>
+        </div>
+        <div class="list-group-item list-group-item-action">
+          <div class="row">
+            <div class="col-sm-1">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar2-range" viewBox="0 0 16 16">
+                <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H2z"/>
+                <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V4zM9 8a1 1 0 0 1 1-1h5v2h-5a1 1 0 0 1-1-1zm-8 2h4a1 1 0 1 1 0 2H1v-2z"/>
+              </svg>
+            </div>
+            <div class="col-sm-10">
+              <a>Tableros</a>
+            </div>
+          </div>
+        </div>
+        <a href="#" class="list-group-item list-group-item-action">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar2-range" viewBox="0 0 16 16">
+            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H2z"/>
+            <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V4zM9 8a1 1 0 0 1 1-1h5v2h-5a1 1 0 0 1-1-1zm-8 2h4a1 1 0 1 1 0 2H1v-2z"/>
+          </svg>
+            Inicio</a>
+        <a href="#" class="list-group-item list-group-item-action">A fourth link item</a>
+        <a href="#" class="list-group-item list-group-item-action" tabindex="-1" aria-disabled="true">A disabled link item</a>
+      </div>
+    </div>
+    <div class="col-sm-8" id="data">
+
+    </div>
+  </div>
 </div>
-
-
-
-
