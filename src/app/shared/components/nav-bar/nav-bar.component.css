@@ -1,3 +1,9 @@
+nav{
+  width: 100%;
+  position: fixed;
+  top: 0;
+}
+
 #navBar{
   background-color:rgb(66, 185, 131);
 }
