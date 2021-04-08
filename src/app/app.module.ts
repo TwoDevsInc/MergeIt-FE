@@ -8,12 +8,14 @@ import { AuthModule } from './auth/auth.module';
 import { LoginComponent } from './auth/components/login/login.component';
 import { RegisterComponent } from './auth/components/register/register.component';
 import { ServerUrlInterceptor } from './interceptors/server-url.interceptor';
+import { NavBarComponent } from './common/components/nav-bar/nav-bar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    NavBarComponent
   ],
   imports: [
     BrowserModule,
