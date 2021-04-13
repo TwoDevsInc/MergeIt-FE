@@ -14,15 +14,12 @@ import { AppRoutingModule } from './app-routing.module';
 @NgModule({
   declarations: [
     AppComponent,
-    MainComponent,
-    NewTeamComponent,
-    IndexComponent,
     NavBarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,    
+    HttpClientModule,
   ],
   providers: [
     {
