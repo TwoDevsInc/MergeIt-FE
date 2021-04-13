@@ -1,8 +1,9 @@
-import { NgModule } from '@angular/core';
+import {  NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProjectBoardComponent } from './components/project-board/project-board.component';
 import { ProjectListMainComponent } from './components/project-list-main/project-list-main.component';
 import { ProjectCardMainComponent } from './components/project-card-main/project-card-main.component';
+import { TaskModule } from '../tasks/task.module';
 
 
 
@@ -13,7 +14,8 @@ import { ProjectCardMainComponent } from './components/project-card-main/project
     ProjectCardMainComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    TaskModule
   ],
   exports : [
     ProjectBoardComponent,

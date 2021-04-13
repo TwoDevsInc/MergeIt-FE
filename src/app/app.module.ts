@@ -1,14 +1,14 @@
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { MainComponent } from './home/main/main.component';
 import { ServerUrlInterceptor } from './interceptors/server-url.interceptor';
-import { NewTeamComponent } from './teams/components/new-team/new-team.component';
-import { IndexComponent } from './home/index/index.component';
 import { NavBarComponent } from './shared/components/nav-bar/nav-bar.component';
 import { AppRoutingModule } from './app-routing.module';
+import { HomeModule } from './home/home.module';
+import { ProjectsModule } from './projects/projects.module';
+import { TaskModule } from './tasks/task.module';
 
 
 @NgModule({
@@ -19,7 +19,7 @@ import { AppRoutingModule } from './app-routing.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
+    HttpClientModule
   ],
   providers: [
     {

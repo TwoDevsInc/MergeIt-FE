@@ -32,6 +32,8 @@
             ],
             "styles": [
               "src/styles.css",
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "./src/bootstrap/bootstrap_theme_twodevs.css",
               "./node_modules/bootstrap-icons/font/bootstrap-icons.css"
             ],
             "scripts": [
