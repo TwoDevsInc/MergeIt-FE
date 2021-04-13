@@ -1,4 +1,10 @@
-<div class="h-100 main-container">
-    <h4> ((Equipo de trabajo)) > ((Nombre de proyecto))</h4>
-    <button class="btn btn-primary-soft">Dashboard</button>
+<div class="h-100 main-container bg-success">
+    <button class="btn btn-primary m-2" [routerLink]="['/dashboard']">Dashboard</button>
+
+    <div class="row bg-info m-0">
+        <div class="col col-lg-2" *ngFor="let item of ['','','']">
+            <task-list></task-list>
+        </div>
+    </div>
+
 </div>
