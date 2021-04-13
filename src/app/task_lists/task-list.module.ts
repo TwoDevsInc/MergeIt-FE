@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TaskListComponent } from './components/task-list/task-list.component';
+import { TaskModule } from '../tasks/task.module';
 
 
 
@@ -9,7 +10,8 @@ import { TaskListComponent } from './components/task-list/task-list.component';
     TaskListComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    TaskModule
   ],
   exports:[
     TaskListComponent

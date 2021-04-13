@@ -1,11 +1,10 @@
-<div class="card">
-    <div class="card-header bg-secondary ">
-      {{taskList.name}}
+<span class="main-container">
+    <div class="card m-2">
+        <div class="card-header ">
+            {{taskList.name}}
+        </div>
+        <div *ngFor="let task of taskList.tasks" class="list-group m-2 mt-3">
+            <a class="list-group-item list-group-item-action border rounded mb-2" (click)="openTaskModal(task)">{{task.name}}</a>
+        </div>
     </div>
-    <div class="list-group">
-        <a href="#" class="list-group-item list-group-item-action">Elementos</a>
-        <a href="#" class="list-group-item list-group-item-action">Elementos</a>
-        <a href="#" class="list-group-item list-group-item-action">Elementos</a>
-        <a href="#" class="list-group-item list-group-item-action disabled">Elementos</a>
-      </div>
-  </div>
+</span>
