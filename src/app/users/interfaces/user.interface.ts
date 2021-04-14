@@ -2,7 +2,8 @@ import { Team } from "src/app/teams/interfaces/team.interface";
 
 export interface User{
     id: number,
-    username: string,
+    username : string,
+	  email : string,
     name: string,
     surname: string
 }

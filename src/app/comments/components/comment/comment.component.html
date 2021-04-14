@@ -1,0 +1,8 @@
+<div>
+    <div class="form-group">
+        <label class="font-weight-bold" for="commentText">{{comment.user.username | titlecase}} 
+            <small id="emailHelp" class="d-inline form-text text-muted">{{comment.createdAt | date:'MMM d, h:mm a'}}</small>
+        </label>
+        <input type="text" class="form-control" id="commentText" placeholder="Escribe un comentario" [(ngModel)]="comment.text" disabled>
+      </div>
+</div>

@@ -1,13 +1,48 @@
+<div class="modal-header bg-primary text-white">
+    <div>
+        <h3 class="modal-title">{{task.name | titlecase}}</h3>
+        <h5 class="">Lista -> {{task.taskList?.name | titlecase}}</h5>
+    </div>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body row">
+    <div class="col">
+        <div>
+            <h5 class="font-weight-bold"><i class="h4 bi bi-card-text mr-2"></i>Descripción</h5>
+            <p>{{task.description}}</p>
+        </div>
+    
+        <div>
+            <h5 class="font-weight-bold"><i class="h4 bi bi-card-image mr-2"></i>Ficheros</h5>
+            <p class="text-muted" *ngIf="!files || files.length === 0">No hay ficheros subidos</p>
+            <div *ngFor="let file of files" class="list-group m-2 mt-3">
+                <file [file]="file"></file>
+            </div>
+        </div>
+    
+        <div>
+            <h5 class="font-weight-bold"><i class="h4 bi bi-chat-left-dots mr-2"></i>Comentarios</h5>
+            <form (ngSubmit)="addComment()">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="newCommentText" name="newCommentText" placeholder="Escribe un comentario" (blur)="onFocusCommentForm()" (focus)="onFocusCommentForm()" [(ngModel)]="newComment.text">
+                    <button type="submit" class="btn btn-primary mt-2" [disabled]="!newComment.text">Add</button>   
+                </div>
+                         
+            </form>
+            
+            
+            <div *ngFor="let comment of comments" class="list-group m-2 mt-3">
+                <comment [comment]="comment"></comment>
+            </div>
+            
+        </div>
+    </div>
+    <div class="col-3">
+        <button class="btn btn-outline-primary mb-2">Check List</button>
+        <button class="btn btn-outline-danger mb-2">Eliminar tarea</button>
+    </div>
+    
 
-    <div class="modal-header">
-        <h4 class="modal-title">{{task.name}}</h4>
-        <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <div class="modal-body">
-        <p> {{task.description}}</p>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
-    </div>
+</div>

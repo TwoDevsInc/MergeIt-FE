@@ -1,10 +1,33 @@
 <span class="main-container">
-    <div class="card m-2">
-        <div class="card-header ">
-            {{taskList.name}}
+    <div class="card mb-2">
+        <div class="card-header">
+            <div class="row" *ngIf="!editingTaskList; else taskListEdit">
+                <div class="col">{{taskList.name | titlecase}}</div>
+                <a (click)="editingTaskList = true" class="bi bi-pen-fill m-0 mr-1"></a>
+                <a (click)="deleteTaskList()" class="bi bi-x-circle-fill text-danger mr-2"></a>
+            </div>
+            <ng-template #taskListEdit>
+                    <div class="row">
+                        <input type="text" class="col form-control" id="editTaskListName" autocomplete="off" name="editTaskListName"
+                        [(ngModel)]="taskList.name">
+                       <button (click)="editTaskList()" class="btn btn-outline-primary pt-0 pb-0 pr-2 pl-2 ml-1" [ngClass]="{'disabled': !taskList.name}"><i class="bi bi-pen-fill p-0 m-0"></i></button>
+                    </div>
+            </ng-template>
         </div>
-        <div *ngFor="let task of taskList.tasks" class="list-group m-2 mt-3">
-            <a class="list-group-item list-group-item-action border rounded mb-2" (click)="openTaskModal(task)">{{task.name}}</a>
+        <div class="list-group m-2 mt-3">
+            <li class="list-group-item border-0 text-muted p-0 mb-2"
+                *ngIf="!taskList.tasks || taskList.tasks.length === 0">No hay elementos</li>
+            <a *ngFor="let task of taskList.tasks" class="list-group-item list-group-item-action border rounded mb-2"
+                (click)="openTaskModal(task)">{{task.name | titlecase}}</a>
+            <li class="list-group-item border-0 p-0">
+                <div class="form-group">
+                    <form (ngSubmit)="addTask()">
+                        <input type="text" class="form-control" id="newTaskName" autocomplete="off" name="newTasktName"
+                            placeholder="Añadir tarea" [(ngModel)]="newTask.name">
+                        <button type="submit" class="btn btn-primary mt-2" [disabled]="!newTask.name">Añadir</button>
+                    </form>
+                </div>
+            </li>
         </div>
     </div>
 </span>
