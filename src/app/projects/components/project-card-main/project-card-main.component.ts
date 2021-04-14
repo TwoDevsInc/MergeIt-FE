@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Project } from '../../interfaces/project.interface';
 
 @Component({
   selector: 'project-card-main',
@@ -6,10 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./project-card-main.component.css']
 })
 export class ProjectCardMainComponent implements OnInit {
+  // @Input() board?: Project;
 
   constructor() { }
 
   ngOnInit(): void {
+
+
   }
 
 }
