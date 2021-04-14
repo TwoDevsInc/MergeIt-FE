@@ -1,13 +1,24 @@
+<div class="modal-header bg-primary text-white">
+    <div>
+        <h3 class="modal-title">{{task.name | titlecase}}</h3>
+        <h5 class="">Lista -> {{task.taskList?.name | titlecase}}</h5>
+    </div>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div>
+        <h5 class="font-weight-bold"><i class="h4 bi bi-card-text mr-2"></i>Descripción</h5>
+        <p>{{task.description}}</p>
+    </div>
 
-    <div class="modal-header">
-        <h4 class="modal-title">{{task.name}}</h4>
-        <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
-            <span aria-hidden="true">&times;</span>
-        </button>
+    <div>
+        <h5 class="font-weight-bold"><i class="h4 bi bi-card-text mr-2"></i>Comentarios</h5>
+        <div *ngFor="let comment of comments" class="list-group m-2 mt-3">
+            <comment [comment]="comment"></comment>
+        </div>
+        
     </div>
-    <div class="modal-body">
-        <p> {{task.description}}</p>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
-    </div>
+
+</div>

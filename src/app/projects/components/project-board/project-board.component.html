@@ -1,8 +1,8 @@
-<div class="h-100 main-container bg-success">
-    <button class="btn btn-primary m-2" [routerLink]="['/dashboard', 'id']">Dashboard</button>
+<div class="h-100 main-container m-2">
+    <button class="btn btn-primary" [routerLink]="['/dashboard', 'id']">Dashboard</button>
 
-    <h1>{{project.name}}</h1>
-    <div class="row bg-info m-0">
+    <h1>{{project.team?.name}} > {{project.name}}</h1>
+    <div class="row m-0">
         <div class="col col-lg-2" *ngFor="let taskList of project.taskLists">
             <task-list [taskList]="taskList"></task-list>
         </div>
