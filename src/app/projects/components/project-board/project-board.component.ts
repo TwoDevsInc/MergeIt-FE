@@ -4,6 +4,7 @@ import { ProjectService } from '../../services/project.service';
 import { ActivatedRoute } from '@angular/router';
 import { delay, switchMap } from 'rxjs/operators';
 import { TaskListService } from 'src/app/task_lists/services/task-list.service';
+import { TaskList } from 'src/app/task_lists/interfaces/task_list.interface';
 
 @Component({
   selector: 'project-board',
@@ -39,8 +40,25 @@ export class ProjectBoardComponent implements OnInit {
     taskLists : [],
   };
 
+  newTaskList: TaskList = {
+    name : "",
+    archived : false
+  }
   
+  addTaskList(){
+    this.taskListService.addTaskListToProject(this.newTaskList,this.project).subscribe(
+      taskList => this.project.taskLists?.push(taskList),
+      error => console.log(error)
+    )
+    this.resetForm();
+  }
 
+  resetForm(){
+    this.newTaskList = {
+      name : "",
+      archived : false
+    }
+  }
 
 
 }

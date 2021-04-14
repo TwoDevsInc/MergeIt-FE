@@ -29,10 +29,7 @@ export class TaskListComponent implements OnInit {
     )
   }
 
-  @Input() taskList : TaskList = {
-    name : "",
-    archived : false
-  };
+  @Input() taskList! : TaskList;
 
   openTaskModal(task : Task) {
     const modalRef = this.modalService.open(TaskModalComponent, this.modalOptions);

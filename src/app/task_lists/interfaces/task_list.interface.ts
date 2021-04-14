@@ -1,3 +1,4 @@
+import { Project } from 'src/app/projects/interfaces/project.interface';
 import { Task } from '../../tasks/interfaces/task';
 
 export interface TaskList{

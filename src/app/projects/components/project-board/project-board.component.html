@@ -6,5 +6,15 @@
         <div class="col col-lg-2" *ngFor="let taskList of project.taskLists">
             <task-list [taskList]="taskList"></task-list>
         </div>
+        <div class="col col-lg-2">
+            <div class="form-group">
+                <form (ngSubmit)="addTaskList()">
+                    <input type="text" class="form-control" id="newTaskListName" name="newTaskListName" [(ngModel)]="newTaskList.name" placeholder="Añadir lista">
+                    <button type="submit" class="btn btn-primary mt-2" [disabled]="!newTaskList.name">Add</button>   
+                </form>
+                
+              </div>
+        </div>
+        
     </div>
 </div>

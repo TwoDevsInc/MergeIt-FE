@@ -6,6 +6,7 @@ import { ProjectCardMainComponent } from './components/project-card-main/project
 import { RouterModule } from '@angular/router';
 import { TaskListModule } from '../task_lists/task-list.module';
 import { TaskListComponent } from '../task_lists/components/task-list/task-list.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -18,7 +19,8 @@ import { TaskListComponent } from '../task_lists/components/task-list/task-list.
   imports: [
     CommonModule,
     RouterModule,
-    TaskListModule
+    TaskListModule,
+    FormsModule
   ],
   exports : [
     ProjectBoardComponent,

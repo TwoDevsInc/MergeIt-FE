@@ -5,6 +5,6 @@ export interface Comment {
     id? : number;
 	task : Task;
 	user : User;
-	text : number;
-	createdAt : Date;
+	text : string;
+	createdAt? : Date;
 }

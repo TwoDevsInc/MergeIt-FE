@@ -14,7 +14,24 @@
     </div>
 
     <div>
-        <h5 class="font-weight-bold"><i class="h4 bi bi-card-text mr-2"></i>Comentarios</h5>
+        <h5 class="font-weight-bold"><i class="h4 bi bi-card-image mr-2"></i>Ficheros</h5>
+        <p class="text-muted" *ngIf="!files || files.length === 0">No hay ficheros subidos</p>
+        <div *ngFor="let file of files" class="list-group m-2 mt-3">
+            <file [file]="file"></file>
+        </div>
+    </div>
+
+    <div>
+        <h5 class="font-weight-bold"><i class="h4 bi bi-chat-left-dots mr-2"></i>Comentarios</h5>
+        <form (ngSubmit)="addComment()">
+            <div class="form-group">
+                <input type="text" class="form-control" id="newCommentText" name="newCommentText" placeholder="Escribe un comentario" (blur)="onFocusCommentForm()" (focus)="onFocusCommentForm()" [(ngModel)]="newComment.text">
+                <button type="submit" class="btn btn-primary mt-2" [disabled]="!newComment.text">Add</button>   
+            </div>
+                     
+        </form>
+        
+        
         <div *ngFor="let comment of comments" class="list-group m-2 mt-3">
             <comment [comment]="comment"></comment>
         </div>

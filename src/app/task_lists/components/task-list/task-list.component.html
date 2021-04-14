@@ -1,10 +1,10 @@
 <span class="main-container">
-    <div class="card m-2">
+    <div class="card mb-2">
         <div class="card-header ">
             {{taskList.name | titlecase}}
         </div>
         <div class="list-group m-2 mt-3">
-            <li class="list-group-item border rounded mb-2" *ngIf="!taskList.tasks || taskList.tasks.length === 0">No hay elementos</li>
+            <li class="list-group-item border-0 text-muted" *ngIf="!taskList.tasks || taskList.tasks.length === 0">No hay elementos</li>
             <a *ngFor="let task of taskList.tasks" class="list-group-item list-group-item-action border rounded mb-2" (click)="openTaskModal(task)">{{task.name | titlecase}}</a>
         </div>
     </div>
