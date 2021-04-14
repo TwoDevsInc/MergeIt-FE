@@ -4,6 +4,6 @@ import { Team } from "src/app/teams/interfaces/team.interface";
 export interface Project{
     id? : number;
     name : string;
-    team : Team;
-    taskLists : TaskList[];
+    team? : Team;
+    taskLists? : TaskList[];
 }
