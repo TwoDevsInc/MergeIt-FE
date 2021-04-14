@@ -2,7 +2,7 @@
 
 
 
-html, body { height: 100%; }
+html, body { height: 100%; overflow:hidden;}
 
 a{
     cursor: pointer;
