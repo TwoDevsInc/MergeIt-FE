@@ -1,16 +1,26 @@
 <div class="h-100 main-container m-2">
-    <button class="btn btn-primary" [routerLink]="['/dashboard', 'id']">Dashboard</button>
-
-    <h1>{{project.team?.name}} > {{project.name}}</h1>
-    <div class="row m-0">
-        <div class="col col-lg-2" *ngFor="let taskList of project.taskLists">
-            <task-list [taskList]="taskList"></task-list>
+    <div class="row ml-3 mb-2">
+        <button class="btn btn-outline-info font-weight-bold" [routerLink]="['/dashboard']">Panel de control</button>
+        <div class="d-flex flex-column justify-content-center ml-3">
+            <div>
+                <h3 class="d-inline m-0">{{project.team?.name}} | {{project.name}}<a class="h5 bi bi-pen-fill m-0 ml-2"></a></h3>
+                
+            </div>
+            
         </div>
-        <div class="col col-lg-2">
+        
+    </div>
+    
+    <div class="row m-0">
+        <div class="col-lg-2 col-md-4" *ngFor="let taskList of project.taskLists">
+            <task-list [taskList]="taskList" (deleted)="deleteTaskList(taskList)"></task-list>
+        </div>
+        <div class="col-lg-2 col-md-4">
             <div class="form-group">
                 <form (ngSubmit)="addTaskList()">
-                    <input type="text" class="form-control" id="newTaskListName" name="newTaskListName" [(ngModel)]="newTaskList.name" placeholder="Añadir lista">
-                    <button type="submit" class="btn btn-primary mt-2" [disabled]="!newTaskList.name">Add</button>   
+                    <input type="text" class="form-control" id="newTaskListName" name="newTaskListName" autocomplete="off" placeholder="Añadir lista"
+                     [(ngModel)]="newTaskList.name">
+                    <button type="submit" class="btn btn-primary mt-2" [disabled]="!newTaskList.name">Añadir</button>   
                 </form>
                 
               </div>

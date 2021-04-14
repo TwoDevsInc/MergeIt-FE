@@ -53,6 +53,10 @@ export class ProjectBoardComponent implements OnInit {
     this.resetForm();
   }
 
+  deleteTaskList(taskList: TaskList): void {
+    this.project.taskLists = this.project.taskLists?.filter(t => t !== taskList);
+  }
+
   resetForm(){
     this.newTaskList = {
       name : "",
