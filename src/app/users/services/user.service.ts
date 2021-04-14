@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { User } from '../interfaces/user.interface';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,14 @@ export class UserService {
     return this.http.get<User>(`${this.API_USERS_URL}/${id}`);
   }
 
+  getUserByTeam(id: number) : Observable<User[]> {
+    return this.http.get<User[]>(`${this.API_USERS_URL}/teamUsers/${id}`);
+  }
+
+  getUserByUsername(username: string) : Observable<User> {
+    return this.http.get<User>(`${this.API_USERS_URL}/findByUserName/${username}`);
+  }
+
   addUser(user : User): Observable<User>{
     return this.http.post<User>(`${this.API_USERS_URL}/add`,user);
   }
@@ -35,3 +44,4 @@ export class UserService {
 
 
 }
+// ${this.API_USERS_URL}/teamUser/${id}

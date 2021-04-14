@@ -7,7 +7,7 @@ import { Project } from '../../interfaces/project.interface';
   styleUrls: ['./project-card-main.component.css']
 })
 export class ProjectCardMainComponent implements OnInit {
-  // @Input() board?: Project;
+  @Input() project!: Project;
 
   constructor() { }
 
