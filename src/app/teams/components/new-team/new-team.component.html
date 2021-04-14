@@ -5,16 +5,16 @@
         <div class="col">
           <label for="name" class="form-label">Nombre del Equipo</label>
           <input id="name" name="name" type="text" class="form-control" required="required"
-            placeholder="Introduce nombre del equipo">
+            placeholder="Introduce nombre del equipo" [(ngModel)]="newTeamName" name="newTeamName">
         </div>
       </div>
       <div class="form-group row">
         <div class="col">
           <label for="newUser" class="form-label">Nuevo Integrante</label>
           <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Introduce el nombre del integrante" >
+            <input type="text" class="form-control" placeholder="Introduce el nombre del integrante" [(ngModel)]="busqueda" name="busqueda">
             <div class="input-group-append">
-              <button class="btn btn-outline-secondary" type="button" id="addMemeberButton">Añadir</button>
+              <button class="btn btn-outline-secondary" type="button" id="addMemeberButton" (click)="addMember()">Añadir</button>
             </div>
           </div>
         </div>
@@ -22,53 +22,16 @@
       <div class="form-group row">
         <div class="col">
           <ul class="list-group list-group-flush">
-            <li class="list-group-item">
-              <div class="row">
-                <label class="col">Integrante 1</label>
-                <button type="button" class="btn p-0 border-0 col-2">
-                  <i class="bi bi-x-circle text-danger"></i>
-                </button>
-              </div>
-            </li>
-            <li class="list-group-item">
-              <div class="row">
-                <label class="col">Integrante 2</label>
-                <button type="button" class="btn p-0 border-0 col-2">
-                  <i class="bi bi-x-circle text-danger"></i>
-                </button>
-              </div>
-            </li>
-            <li class="list-group-item">
-              <div class="row">
-                <label class="col">Integrante 3</label>
-                <button type="button" class="btn p-0 border-0 col-2">
-                  <i class="bi bi-x-circle text-danger"></i>
-                </button>
-              </div>
-            </li>
-            <li class="list-group-item">
-              <div class="row">
-                <label class="col">Integrante 4</label>
-                <button type="button" class="btn p-0 border-0 col-2">
-                  <i class="bi bi-x-circle text-danger"></i>
-                </button>
-              </div>
-            </li>
-            <li class="list-group-item">
-              <div class="row">
-                <label class="col">Integrante 5</label>
-                <button type="button" class="btn p-0 border-0 col-2">
-                  <i class="bi bi-x-circle text-danger"></i>
-                </button>
-              </div>
-            </li>
+            <div *ngFor="let newUser of newUsers">
+              <new-team-user></new-team-user>
+            </div>
           </ul>
         </div>
       </div>
       <div class="form-group col">
         <div class="row d-flex justify-content-end">
-          <button type="button" class="btn btn-danger col-6 mr-3">Vaciar miembros</button>
-          <button name="submit" type="submit" class="btn btn-block btn-primary col-4 ">Crear Equipo</button>
+          <button type="button" class="btn btn-danger col-6 mr-3" (click)="deleteUsersFromNewUsers()">Vaciar miembros</button>
+          <button name="submit" type="submit" class="btn btn-block btn-primary col-4 " (click)="createNewTeam()">Crear Equipo</button>
         </div>
       </div>
     </form>

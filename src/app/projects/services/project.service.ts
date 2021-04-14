@@ -22,7 +22,7 @@ export class ProjectService {
   }
 
   getProjectsByTeam(team : Team) : Observable<Project[]>{
-    return this.http.get<Project[]>(`${this.API_PROJECTS_URL}/projectsByTeam/${team}`);
+    return this.http.get<Project[]>(`${this.API_PROJECTS_URL}/projectsByTeam/${team.id}`);
   }
 
   addProjectToTeam(project : Project, team : Team): Observable<Project>{

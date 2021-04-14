@@ -4,6 +4,7 @@ import { ProjectsModule } from '../projects/projects.module';
 import { MainComponent } from './main/main.component';
 import { IndexComponent } from './index/index.component';
 import { TeamModule } from '../teams/team.module';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -15,7 +16,8 @@ import { TeamModule } from '../teams/team.module';
   imports: [
     CommonModule,
     ProjectsModule,
-    TeamModule
+    TeamModule,
+    FormsModule
   ]
 })
 export class HomeModule { }

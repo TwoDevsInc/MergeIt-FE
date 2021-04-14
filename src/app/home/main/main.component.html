@@ -21,7 +21,7 @@
 
         <div class="list-group" style="max-height: 615px; overflow-y: auto; overflow-x: hidden;">
           <div>
-            <button class="list-group-item list-group-item-action border-0" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            <button class="list-group-item list-group-item-action border-0" type="button" data-toggle="collapse"  data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
               Merge It
               <i class="bi bi-caret-left-fill col-1"></i>
               <i class="bi bi-caret-down-fill col-1"></i>
@@ -65,67 +65,6 @@
 
 
 
-          <div>
-            <button class="list-group-item list-group-item-action border-0" type="button" data-toggle="collapse" data-target="#collapseExampleDos" aria-expanded="false" aria-controls="collapseExampleDos">
-              Banana Phone
-              <i class="bi bi-caret-left-fill col-1"></i>
-              <i class="bi bi-caret-down-fill col-1"></i>
-            </button>
-            <div class="collapse" id="collapseExampleDos">
-              <a href="#" class="list-group-item list-group-item-action border-0">
-                <div class="row"><div class="col-1"></div><i class="bi bi-info-circle-fill col-1"></i><span class="col">Información</span></div>
-              </a>
-              <a href="#" class="list-group-item list-group-item-action border-0">
-                <div class="row"><div class="col-1"></div><i class="bi bi-calendar2-range col-1"></i><span class="col">Tableros</span></div>
-              </a>
-              <a href="#" class="list-group-item list-group-item-action border-0">
-                <div class="row"><div class="col-1"></div><i class="bi bi-people-fill col-1"></i><span class="col">Miembros</span></div>
-              </a>
-              <a href="#" class="list-group-item list-group-item-action border-0">
-                <div class="row"><div class="col-1"></div><i class="bi bi-gear-fill col-1"></i><span class="col">Configuración</span></div>
-              </a>
-            </div>
-          </div><div>
-            <button class="list-group-item list-group-item-action border-0" type="button" data-toggle="collapse" data-target="#collapseExampleDos" aria-expanded="false" aria-controls="collapseExampleDos">
-              Banana Phone
-              <i class="bi bi-caret-left-fill col-1"></i>
-              <i class="bi bi-caret-down-fill col-1"></i>
-            </button>
-            <div class="collapse" id="collapseExampleDos">
-              <a href="#" class="list-group-item list-group-item-action border-0">
-                <div class="row"><div class="col-1"></div><i class="bi bi-info-circle-fill col-1"></i><span class="col">Información</span></div>
-              </a>
-              <a href="#" class="list-group-item list-group-item-action border-0">
-                <div class="row"><div class="col-1"></div><i class="bi bi-calendar2-range col-1"></i><span class="col">Tableros</span></div>
-              </a>
-              <a href="#" class="list-group-item list-group-item-action border-0">
-                <div class="row"><div class="col-1"></div><i class="bi bi-people-fill col-1"></i><span class="col">Miembros</span></div>
-              </a>
-              <a href="#" class="list-group-item list-group-item-action border-0">
-                <div class="row"><div class="col-1"></div><i class="bi bi-gear-fill col-1"></i><span class="col">Configuración</span></div>
-              </a>
-            </div>
-          </div><div>
-            <button class="list-group-item list-group-item-action border-0" type="button" data-toggle="collapse" data-target="#collapseExampleDos" aria-expanded="false" aria-controls="collapseExampleDos">
-              Banana Phone
-              <i class="bi bi-caret-left-fill col-1"></i>
-              <i class="bi bi-caret-down-fill col-1"></i>
-            </button>
-            <div class="collapse" id="collapseExampleDos">
-              <a href="#" class="list-group-item list-group-item-action border-0">
-                <div class="row"><div class="col-1"></div><i class="bi bi-info-circle-fill col-1"></i><span class="col">Información</span></div>
-              </a>
-              <a href="#" class="list-group-item list-group-item-action border-0">
-                <div class="row"><div class="col-1"></div><i class="bi bi-calendar2-range col-1"></i><span class="col">Tableros</span></div>
-              </a>
-              <a href="#" class="list-group-item list-group-item-action border-0">
-                <div class="row"><div class="col-1"></div><i class="bi bi-people-fill col-1"></i><span class="col">Miembros</span></div>
-              </a>
-              <a href="#" class="list-group-item list-group-item-action border-0">
-                <div class="row"><div class="col-1"></div><i class="bi bi-gear-fill col-1"></i><span class="col">Configuración</span></div>
-              </a>
-            </div>
-          </div>
 
         </div>
 
@@ -146,11 +85,8 @@
             <i class="bi bi-calendar2-range col-sm-1"></i>
             <span>Tus Paneles</span>
           </div>
-          <div class="column" style="max-height: 700px; overflow-y: auto; overflow-x: hidden;">
-
-
-            <project-list-main></project-list-main>
-            
+          <div class="column" style="max-height: 700px; overflow-y: auto; overflow-x: hidden;" *ngFor="let team of teams">
+            <project-list-main [team]="team" ></project-list-main>
           </div>
         </div>
       </div>
