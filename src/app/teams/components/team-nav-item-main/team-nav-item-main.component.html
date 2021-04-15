@@ -8,7 +8,7 @@
     <a href="#" class="list-group-item list-group-item-action border-0" type="button" data-toggle="modal" data-target="#addNewProjectModal">
       <div class="row"><div class="col-1"></div><i class="bi bi-info-circle-fill col-1"></i><span class="col">Nuevo Projecto</span></div>
     </a>
-    <a href="#" class="list-group-item list-group-item-action border-0" type="button" data-toggle="modal" data-target="#addNewMemberModal">
+    <a class="list-group-item list-group-item-action border-0" (click)="openAddUserModal(team)">
       <div class="row"><div class="col-1"></div><i class="bi bi-people-fill col-1"></i><span class="col">Añadir Miembro</span></div>
     </a>
     <!-- <a href="#" class="list-group-item list-group-item-action border-0">
@@ -32,7 +32,7 @@
 
       </div>
       <div class="modal-body">
-        <!-- <new-team [loggedUser]="loggedUser"></new-team> -->
+        <add-project></add-project>
       </div>
 
     </div>
@@ -44,7 +44,7 @@
 
 <!-- Modal de Añadir nuevo miembro -->
 
-<div class="modal fade " id="addNewMemberModal" tabindex="-1" role="dialog" aria-labelledby="addNewMemberModalLabel"
+<!-- <div class="modal fade " id="addNewMemberModal" tabindex="-1" role="dialog" aria-labelledby="addNewMemberModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -56,9 +56,9 @@
 
       </div>
       <div class="modal-body">
-        <!-- <new-team [loggedUser]="loggedUser"></new-team> -->
+        <add-user [team]="team"></add-user>
       </div>
 
     </div>
   </div>
-</div>
+</div> -->

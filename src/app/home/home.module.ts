@@ -5,6 +5,7 @@ import { MainComponent } from './main/main.component';
 import { IndexComponent } from './index/index.component';
 import { TeamModule } from '../teams/team.module';
 import { FormsModule } from '@angular/forms';
+import { UsersModule } from '../users/users.module';
 
 
 
@@ -17,7 +18,8 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     ProjectsModule,
     TeamModule,
-    FormsModule
+    FormsModule,
+    UsersModule
   ]
 })
 export class HomeModule { }

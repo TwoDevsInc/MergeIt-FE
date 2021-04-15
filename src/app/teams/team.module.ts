@@ -5,6 +5,8 @@ import { NewTeamComponent } from './components/new-team/new-team.component';
 import { HttpClientModule } from'@angular/common/http';
 import { NewTeamUserComponent } from './components/new-team-user/new-team-user.component';
 import { FormsModule } from '@angular/forms';
+import { UsersModule } from '../users/users.module';
+import { ProjectsModule } from '../projects/projects.module';
 
 
 
@@ -13,7 +15,9 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    UsersModule,
+    ProjectsModule
   ],
   exports: [
     NewTeamComponent,
