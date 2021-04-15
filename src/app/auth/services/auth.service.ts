@@ -6,42 +6,58 @@ import { LoginResponse } from '../interfaces/login-response';
 import { UserService } from '../../users/services/user.service';
 import { catchError, map } from 'rxjs/operators';
 import { ValidateTokenResponse } from '../interfaces/validate-token-response.interface';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private http : HttpClient, private usersService : UserService) { }
+  constructor(private http: HttpClient, private usersService: UserService, private router: Router) { }
 
   API_AUTH_URL = "auth"
 
-  private AuthUser : User = {
+  private AuthUser: User = {
     id: 0,
     username: "",
     email: "",
     name: "",
     surname: "",
-    teams : []
-};
+    teams: []
+  };
 
-  logged : boolean = false;
+  logged: boolean = false;
 
-  get getAuthUser(){
-    return {...this.AuthUser};
+  get getAuthUser() {
+    return { ...this.AuthUser };
   }
 
-  login(userLogin : UserLogin) : Observable<void>{
-    return this.http.post<LoginResponse>(`${this.API_AUTH_URL}/login`,userLogin).pipe(map(resp => {
+  login(userLogin: UserLogin): Observable<void> {
+    return this.http.post<LoginResponse>(`${this.API_AUTH_URL}/login`, userLogin).pipe(map(resp => {
       this.AuthUser = resp.userLogged;
       this.logged = true;
-      localStorage.setItem("token",resp.jwt);    
-      localStorage.setItem("userLogged",resp.userLogged.id + "");
+      localStorage.setItem("token", resp.jwt);
+      localStorage.setItem("userLogged", resp.userLogged.id + "");
     }));
   }
 
-  validateToken() : Observable<boolean>{
-    return this.http.get(`${this.API_AUTH_URL}/validateToken`).pipe( map(() => true), catchError(error => of(false)));
+  logout() {
+    localStorage.removeItem("token");
+    localStorage.removeItem("userLogged");
+    this.logged = false;
+    this.AuthUser = {
+      id: 0,
+      username: "",
+      email: "",
+      name: "",
+      surname: "",
+      teams: []
+    };
+    this.router.navigateByUrl("/login")
+  }
+
+  validateToken(): Observable<boolean> {
+    return this.http.get(`${this.API_AUTH_URL}/validateToken`).pipe(map(() => true), catchError(error => of(false)));
   }
 
 }

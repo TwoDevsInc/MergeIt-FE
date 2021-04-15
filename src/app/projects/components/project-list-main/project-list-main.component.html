@@ -6,6 +6,7 @@
 
 <div class="row" style="max-height: 160px; overflow: auto;">
   <div  *ngFor="let project of projects">
-    <project-card-main [project]="project" [routerLink]="['/project', project.id]"></project-card-main>
+      <project-card-main class="pointerCursor" [project]="project" [routerLink]="['/project', project.id]"></project-card-main>
+    
   </div>
 </div>
