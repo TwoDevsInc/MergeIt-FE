@@ -4,6 +4,7 @@ import { UserLogin } from 'src/app/users/interfaces/user.interface';
 import { RegisterFormComponent } from '../register-form/register-form.component';
 import { AuthService } from '../../auth/services/auth.service';
 import { Router } from '@angular/router';
+import { UserService } from '../../users/services/user.service';
 
 @Component({
   selector: 'login-form',
@@ -21,7 +22,7 @@ export class LoginFormComponent implements OnInit {
 
   modalOptions:NgbModalOptions;
 
-  constructor(private modalService: NgbModal, private authService : AuthService, private router : Router) { 
+  constructor(private modalService: NgbModal, private authService : AuthService, private router : Router, private usersService : UserService) { 
     this.modalOptions = {
       size : 'lg',
       backdrop:true,
@@ -43,11 +44,7 @@ export class LoginFormComponent implements OnInit {
 
   login(){
     this.authService.login(this.loginUser).subscribe(
-      resp => {
-        this.router.navigate(['/eventos'])
-        localStorage.setItem('token', resp.jwt);
-        this.authService.logged$.next(true);
-      },
+      () => this.router.navigate(['/dashboard']),
       error => this.errorAuth = true
     )
   }

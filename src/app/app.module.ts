@@ -29,14 +29,15 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: ServerUrlInterceptor,
+      useClass: JwtInterceptor,
       multi: true,
     },
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: JwtInterceptor,
+      useClass: ServerUrlInterceptor,
       multi: true,
-      }
+    }
+    
   ],
   bootstrap: [AppComponent]
 })

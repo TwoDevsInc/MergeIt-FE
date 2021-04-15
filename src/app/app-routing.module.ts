@@ -7,7 +7,7 @@ import { LoginFormComponent } from './home/login-form/login-form.component';
 import { LoginGuard } from './guards/login.guard';
 
 const routes: Routes = [
-  { path: "", component: IndexComponent, pathMatch: "full" },
+  { path: "", redirectTo : "dashboard", pathMatch: "full" },
   { path: "login", component: LoginFormComponent},
   { path: "dashboard", component: MainComponent, canActivate : [LoginGuard]},
   { path: "project/:id", component : ProjectBoardComponent, canActivate : [LoginGuard]},

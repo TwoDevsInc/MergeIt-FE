@@ -13,8 +13,8 @@ export class LoginGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+
       if(localStorage.getItem("token") !== null) {
-        this.authService.logged$.next(true);
         return true;
       }
       return this.router.createUrlTree(['/login']);
