@@ -30,7 +30,10 @@ export class MainComponent implements OnInit {
       u => {
         this.loggedUser = u;
         this.teamService.getTeamsByUser(u.id!).subscribe(
-          r => this.teams = r
+          r => {
+            this.teams = r;
+            this.teams.forEach(t => t.projects = []);
+          }
         )
       },
       e => console.log(`No se ha posido recuperar el usuario logeado`)

@@ -62,9 +62,9 @@ export class NewTeamComponent implements OnInit {
         this.teamService.addUserToTeam(this.loggedUser,team).subscribe(
           resp => console.log(resp)
         )
-        if (this.newUsers.length > 0)
-          console.log('hay mas de uno');
-          this.teamService.addUsersToTeam(this.newUsers,team);
+        // if (this.newUsers.length > 0)
+        //   console.log('hay mas de uno');
+        //   this.teamService.addUsersToTeam(this.newUsers,team);
       }
     );
 

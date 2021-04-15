@@ -1,1 +1,32 @@
-<p>add-project works!</p>
+
+
+
+<div class="modal-header bg-primary">
+  <h3 class="modal-title text-white" id="addNewProjectModalLabel">Añadir nuevo proyecto</h3>
+  <button type="button" class="close p-0" data-dismiss="modal" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <h3 class="bi bi-x text-white"></h3>
+  </button>
+
+</div>
+<div class="modal-body">
+  <div class="row justify-content-center">
+    <div class="col">
+      <form>
+        <div class="form-group row">
+          <div class="col">
+            <label for="name" class="form-label">Nombre del Projecto</label>
+            <input id="name" name="name" type="text" class="form-control" required="required"
+              placeholder="Introduce nombre del proyecto" name="newTeamName" [(ngModel)]="project.name">
+          </div>
+        </div>
+
+        <div class="form-group col">
+          <div class="row d-flex justify-content-end">
+            <button name="submit" type="submit" class="btn btn-block btn-primary col-4 " (click)="addProject()">Crear Proyecto</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+

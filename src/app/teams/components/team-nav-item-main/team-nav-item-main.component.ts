@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
+import { AddProjectComponent } from 'src/app/projects/components/add-project/add-project.component';
 import { AddUserComponent } from 'src/app/users/components/add-user/add-user.component';
 import { Team } from '../../interfaces/team.interface';
 
@@ -15,7 +16,6 @@ export class TeamNavItemMainComponent implements OnInit {
   identifier: string = '';
   constructor(private modalService: NgbModal) {
     this.modalOptions = {
-      size: 'lg',
       backdrop:true,
       backdropClass:'customBackdrop'
     }
@@ -27,6 +27,17 @@ export class TeamNavItemMainComponent implements OnInit {
 
   openAddUserModal(team: Team){
     const modalRef = this.modalService.open(AddUserComponent, this.modalOptions);
+    modalRef.componentInstance.team = team;
+
+    modalRef.result.then((result) => {
+      console.log(result);
+    }, (reason) => {
+
+    });
+  }
+
+  openAddProjectModal(team: Team){
+    const modalRef = this.modalService.open(AddProjectComponent, this.modalOptions);
     modalRef.componentInstance.team = team;
 
     modalRef.result.then((result) => {
