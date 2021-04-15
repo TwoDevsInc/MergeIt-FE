@@ -53,6 +53,16 @@ export class ProjectBoardComponent implements OnInit {
     this.resetForm();
   }
 
+  editTaskList(){
+    this.projectService.updateProject(this.project).subscribe(
+      project => console.log(project)
+    )
+  }
+
+  addUserToTeam(){
+
+  }
+
   deleteTaskList(taskList: TaskList): void {
     this.project.taskLists = this.project.taskLists?.filter(t => t !== taskList);
   }
