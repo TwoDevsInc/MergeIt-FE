@@ -1,19 +1,22 @@
 <div class="h-100 d-flex flex-row justify-content-center main-container mt-5">
     <div class="col-3">
-        <form class="border rounded p-3">
+        <form class="border rounded p-3" (ngSubmit)="login()">
             <h3>Iniciar sesión</h3>
+            <div class="alert alert-danger" role="alert" *ngIf="errorAuth">
+                Nombre de usuario o constraseña no válidos
+              </div>
             <div class="form-group row">
                 <div class="col">
                     <label for="user" class="form-label">Usuario</label>
                     <input id="user" name="user" type="text" class="form-control" autocomplete="off" required="required"
-                        placeholder="Introduce nombre de usuario">
+                        placeholder="Introduce nombre de usuario" [(ngModel)]="loginUser.username">
                 </div>
             </div>
             <div class="form-group row">
 
                 <div class="col">
                     <label for="password" class="form-label">Contraseña</label>
-                    <input id="password" name="password" type="password" class="form-control" autocomplete="off" required="required" placeholder="Contraseña">
+                    <input id="password" name="password" type="password" class="form-control" autocomplete="off" required="required" placeholder="Contraseña" [(ngModel)]="loginUser.password">
                 </div>
             </div>
             <div class="form-group row">
@@ -23,9 +26,7 @@
             </div>
             <span>¿No tienes cuenta? <a type="button" class="text-primary" (click)="openRegisterModal()">Registrarse</a></span>
         </form>
-        
     </div>
 </div>
-
 
 

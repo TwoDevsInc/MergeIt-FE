@@ -1,0 +1,48 @@
+<div class="modal-header bg-primary text-white">
+  <h5 class="modal-title">Registrarse</h5>
+  <button type="button" class="ml-0 d-inline close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+</button>
+</div>
+<div class="modal-body">
+  <form (ngSubmit)="registerUser()">
+    <div class="form-group row">
+      <div class="col-5">
+        <label for="first_name" class="form-label">Nombre</label>
+        <input id="first_name" name="first_name" type="text" class="form-control" placeholder="Nombre" [(ngModel)]="newUserRegister.name">
+      </div>
+
+      <div class="col-7">
+        <label for="surname" class="form-label">Apellidos</label>
+        <input id="surname" name="surname" type="text" class="form-control" placeholder="Apellidos" [(ngModel)]="newUserRegister.surname">
+      </div>
+    </div>
+    <div class="form-group row">
+
+      <div class="col">
+        <label for="username" class="form-label">Usuario*</label>
+        <input id="username" name="username" type="text" class="form-control" placeholder="Usuario" [(ngModel)]="newUserRegister.username">
+      </div>
+    </div>
+    <div class="form-group row">
+
+      <div class="col">
+        <label for="password" class="form-label">Contraseña*</label>
+        <input id="password" name="password" type="text" class="form-control" placeholder="Contraseña" [(ngModel)]="newUserRegister.password">
+      </div>
+    </div>
+    <div class="form-group row">
+
+      <div class="col">
+        <label for="email" class="form-label">Correo</label>
+        <input id="email" name="email" placeholder="Ej: usuario@gmail.com" type="email" class="form-control" [(ngModel)]="newUserRegister.email">
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col d-flex justify-content-end">
+        <button name="submit" type="submit" class="btn btn-primary" [disabled]="!newUserRegister.username || !newUserRegister.password">Registrarse</button>
+      </div>
+    </div>
+  </form>
+
+</div>

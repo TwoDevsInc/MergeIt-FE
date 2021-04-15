@@ -19,10 +19,16 @@ export interface UserTeams{
 }
 
 export interface NewUser{
-  username : string,
-  password : string,
-  email? : string,
-  name?: string,
-  surname?: string
+  username : string;
+  password : string;
+  email? : string;
+  name?: string;
+  surname?: string;
+}
+
+
+export interface UserLogin{
+  username : string;
+  password : string;
 }
 
