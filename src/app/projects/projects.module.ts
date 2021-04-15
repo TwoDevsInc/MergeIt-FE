@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { TaskListModule } from '../task_lists/task-list.module';
 import { TaskListComponent } from '../task_lists/components/task-list/task-list.component';
 import { FormsModule } from '@angular/forms';
+import { AddProjectComponent } from './components/add-project/add-project.component';
 
 
 
@@ -14,7 +15,8 @@ import { FormsModule } from '@angular/forms';
   declarations: [
     ProjectBoardComponent,
     ProjectListMainComponent,
-    ProjectCardMainComponent
+    ProjectCardMainComponent,
+    AddProjectComponent
   ],
   imports: [
     CommonModule,
@@ -25,7 +27,8 @@ import { FormsModule } from '@angular/forms';
   exports : [
     ProjectBoardComponent,
     ProjectListMainComponent,
-    ProjectCardMainComponent
+    ProjectCardMainComponent,
+    AddProjectComponent
   ]
 })
 export class ProjectsModule { }

@@ -3,8 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User, UserTeams } from 'src/app/users/interfaces/user.interface';
 import { Team } from '../interfaces/team.interface';
-import { map, catchError } from 'rxjs/operators';
-
 @Injectable({
   providedIn: 'root'
 })
@@ -21,6 +19,9 @@ export class TeamServiceService {
   }
 
   addUserToTeam(user: User, team: Team): Observable<Team>{
+    console.log('servicio------')
+    console.log(user);
+    console.log(team);
     return this.http.put<Team>(`${this.baseURL}/addUser/${team.id}`, user);
   }
 

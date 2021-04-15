@@ -22,6 +22,17 @@
         <div class="list-group" style="max-height: 615px; overflow-y: auto; overflow-x: hidden;">
           <div *ngFor="let team of teams">
             <team-nav-item-main [team]="team"></team-nav-item-main>
+            <!-- <div class="list-group-item list-group-item-action-disabled">
+              <span>{{team.name}}</span>
+            </div>
+            <div class="list-group-item list-group-item-action" (click)="openAddUserModal(team)">
+              <span class="ml-5">Nuevo Usuario</span>
+            </div>
+            <div class="list-group-item list-group-item-action">
+              <span class="ml-5">Nuevo Projecto</span>
+            </div> -->
+
+
           </div>
         </div>
 
@@ -72,3 +83,6 @@
     </div>
   </div>
 </div>
+
+
+
