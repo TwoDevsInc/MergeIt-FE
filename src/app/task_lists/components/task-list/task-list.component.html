@@ -7,16 +7,23 @@
                 <a (click)="deleteTaskList()" class="bi bi-x-circle-fill text-danger mr-2"></a>
             </div>
             <ng-template #taskListEdit>
+
+                <form (ngSubmit)="editTaskList()">
                     <div class="row">
-                        <input type="text" class="col form-control" id="editTaskListName" autocomplete="off" name="editTaskListName"
-                        [(ngModel)]="taskList.name">
-                       <button (click)="editTaskList()" class="btn btn-outline-primary pt-0 pb-0 pr-2 pl-2 ml-1" [ngClass]="{'disabled': !taskList.name}"><i class="bi bi-pen-fill p-0 m-0"></i></button>
+                        <input type="text" class="col form-control" id="editTaskListName" autocomplete="off"
+                            name="editTaskListName" [(ngModel)]="taskList.name">
+                        <button type="submit" class="btn btn-outline-primary pt-0 pb-0 pr-2 pl-2 ml-1"
+                            [ngClass]="{'disabled': !taskList.name}">
+                            <i class="bi bi-pen-fill p-0 m-0"></i>
+                        </button>
                     </div>
+                </form>
             </ng-template>
         </div>
         <div class="list-group m-2 mt-3">
             <li class="list-group-item border-0 text-muted p-0 mb-2"
-                *ngIf="!taskList.tasks || taskList.tasks.length === 0">No hay elementos</li>
+                *ngIf="!taskList.tasks || taskList.tasks.length === 0">
+                No hay elementos</li>
             <a *ngFor="let task of taskList.tasks" class="list-group-item list-group-item-action border rounded mb-2"
                 (click)="openTaskModal(task)">{{task.name | titlecase}}</a>
             <li class="list-group-item border-0 p-0">

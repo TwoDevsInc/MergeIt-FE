@@ -2,15 +2,38 @@
     <div class="row ml-3 mb-2">
         <button class="btn btn-outline-info font-weight-bold" [routerLink]="['/dashboard']">Panel de control</button>
         <div class="d-flex flex-column justify-content-center ml-3">
-            <div>
-                <h3 class="d-inline m-0">{{project.team?.name}} | {{project.name}}<a (click)="editTaskList()" class="h5 bi bi-pen-fill m-0 ml-2"></a></h3>
-                <span>AÑADIR USUARIO</span><a (click)="addUserToTeam()" class="h5 bi bi-pen m-0 ml-2"></a>
+            <div class="row">
+                <div class="ml-3">
+                    <h3 class="d-inline m-0">{{project.team?.name}} |</h3>
+                </div>
+                <div class="ml-1">
+                    <h3 class="d-inline m-0" *ngIf="!editingProjectName; else projectEdit">
+                        {{project.name}}<a (click)="editingProjectName = true" class="h5 bi bi-pen-fill m-0 ml-2"></a>
+                    </h3>
+                </div>
+
+
             </div>
-            
+            <ng-template #projectEdit>
+                <div class="row">
+                    <form (ngSubmit)="editProject()">
+                        <div class="row ml-3">
+                            <input type="text" class="col form-control" id="editProjectName" autocomplete="off"
+                                name="editProjectName" [(ngModel)]="project.name">
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-outline-primary pt-0 pb-0 pr-2 pl-2 ml-1"
+                                    [ngClass]="{'disabled': !project.name}"><i
+                                        class="bi bi-pen-fill p-0 m-0"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </ng-template>
+
         </div>
-        
+
     </div>
-    
+
     <div class="row m-0">
         <div class="col-lg-2 col-md-4" *ngFor="let taskList of project.taskLists">
             <task-list [taskList]="taskList" (deleted)="deleteTaskList(taskList)"></task-list>
@@ -18,13 +41,13 @@
         <div class="col-lg-2 col-md-4">
             <div class="form-group">
                 <form (ngSubmit)="addTaskList()">
-                    <input type="text" class="form-control" id="newTaskListName" name="newTaskListName" autocomplete="off" placeholder="Añadir lista"
-                     [(ngModel)]="newTaskList.name">
-                    <button type="submit" class="btn btn-primary mt-2" [disabled]="!newTaskList.name">Añadir</button>   
+                    <input type="text" class="form-control" id="newTaskListName" name="newTaskListName"
+                        autocomplete="off" placeholder="Añadir lista" [(ngModel)]="newTaskList.name">
+                    <button type="submit" class="btn btn-primary mt-2" [disabled]="!newTaskList.name">Añadir</button>
                 </form>
-                
-              </div>
+
+            </div>
         </div>
-        
+
     </div>
 </div>

@@ -1,6 +1,24 @@
 <div class="modal-header bg-primary text-white">
     <div>
-        <h3 class="modal-title">{{task.name | titlecase}}</h3>
+        <!-- <h3 class="modal-title">{{task.name | titlecase}}</h3> -->
+        <div>
+            <h3 class="d-inline m-0 mr-2" *ngIf="!editingTask; else taskEdit">
+                {{task.name | titlecase}}<a (click)="editingTask = true" class="h5 bi bi-pen-fill m-0 ml-2"></a>
+            </h3>
+            <ng-template #taskEdit>
+
+                <form (ngSubmit)="editTask()">
+                    <div class="row">
+                        <input type="text" class="text-white font-weight-bold bg-primary col form-control ml-2" id="editTaskName" autocomplete="off"
+                            name="editTaskName" [(ngModel)]="editingTaskTitle">
+                        <button type="submit" class="btn btn-light pt-0 pb-0 pr-2 pl-2 ml-1"
+                            [ngClass]="{'disabled': !task.name}">
+                            <i class="bi bi-pen-fill p-0 m-0"></i>
+                        </button>
+                    </div>
+                </form>
+            </ng-template>
+        </div>
         <h5 class="">Lista -> {{task.taskList?.name | titlecase}}</h5>
     </div>
     <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
@@ -12,6 +30,9 @@
         <div>
             <h5 class="font-weight-bold"><i class="h4 bi bi-card-text mr-2"></i>Descripción</h5>
             <p>{{task.description}}</p>
+            <a class="list-group-item list-group-item-action">
+                No hay ninguna descripción
+              </a>
         </div>
     
         <div>
