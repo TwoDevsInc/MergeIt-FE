@@ -3,9 +3,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { MainComponent } from './home/main/main.component';
 import { IndexComponent } from './home/index/index.component';
 import { ProjectBoardComponent } from './projects/components/project-board/project-board.component';
+import { LoginComponent } from './auth/components/login/login.component';
 
 const routes: Routes = [
   { path: "", component: IndexComponent, pathMatch: "full" },
+  { path: "login", component: LoginComponent},
   { path: "dashboard", component: MainComponent },
   { path: "project/:id", component : ProjectBoardComponent },
   { path:"**", redirectTo: ""}
