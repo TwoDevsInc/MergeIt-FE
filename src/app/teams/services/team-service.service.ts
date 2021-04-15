@@ -19,4 +19,17 @@ export class TeamServiceService {
   createTeam(team: Team): Observable<Team>{
     return this.http.post<Team>(`${this.baseURL}/add`, team);
   }
+
+  addUserToTeam(user: User, team: Team): Observable<Team>{
+    // console.log(user);
+    // console.log(team.id);
+    // return this.http.put<Team>(`${this.baseURL}/addUser/${team.id}`, {id: 7});
+    return this.http.put<Team>(`team/addUser/20`, {id: 10});
+  }
+
+  addUsersToTeam(users: User[], team: Team): Observable<Team>{
+    console.log(users);
+    console.log(team.id);
+    return this.http.put<Team>(`${this.baseURL}/addUsers/${team.id}`, users);
+  }
 }

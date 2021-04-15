@@ -20,7 +20,7 @@ export class ProjectListMainComponent implements OnInit {
     this.projectService.getProjectsByTeam(this.team).subscribe(
       p => this.projects = p
     )
-    this.userService.getUserByTeam(this.team.id).subscribe(
+    this.userService.getUserByTeam(this.team.id!).subscribe(
       u => this.count = u.length
     )
   }
