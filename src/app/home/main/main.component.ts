@@ -27,13 +27,29 @@ export class MainComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loggedUser = this.authService.getAuthUser;
-    this.teamService.getTeamsByUser(this.authService.getAuthUser.id!).subscribe(
-      r => {
-        this.teams = r;
-        this.teams.forEach(t => t.projects = []);
+    if(this.authService.logged){
+      this.loggedUser = this.authService.getAuthUser;
+      this.teamService.getTeamsByUser(this.authService.getAuthUser.id!).subscribe(
+        r => {
+          this.teams = r;
+          this.teams.forEach(t => t.projects = []);
+        }
+      )
+    }
+    else{
+      const userLogged = localStorage.getItem("userLogged")
+      console.log(userLogged)
+      if(userLogged){
+        this.teamService.getTeamsByUser(+userLogged).subscribe(
+          r => {
+            this.teams = r;
+            this.teams.forEach(t => t.projects = []);
+          }
+        )
       }
-    )
+
+    }
+    
   }
 
   pene(team: Team){
