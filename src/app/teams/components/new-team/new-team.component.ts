@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/users/interfaces/user.interface';
 import { UserService } from 'src/app/users/services/user.service';
 import { Team } from '../../interfaces/team.interface';
+import { TeamServiceService } from '../../services/team-service.service';
 
 @Component({
   selector: 'new-team',
@@ -12,7 +13,7 @@ export class NewTeamComponent implements OnInit {
   newUsers: User[] = [];
   busqueda: string = '';
   newTeamName: string = '';
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private teamService: TeamServiceService) { }
 
   ngOnInit(): void {
 
@@ -43,12 +44,12 @@ export class NewTeamComponent implements OnInit {
 
   createNewTeam(): void {
     console.log(`${this.newTeamName}`);
-    let newTeam = {
+    let newTeam: Team = {
       name: this.newTeamName,
       users: [],
       projects: []
     }
-
+    this.teamService.createTeam(newTeam)
     this.newTeamName = '';
   }
 }
