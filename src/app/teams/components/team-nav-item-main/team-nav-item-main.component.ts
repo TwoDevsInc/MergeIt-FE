@@ -8,9 +8,18 @@ import { Team } from '../../interfaces/team.interface';
 })
 export class TeamNavItemMainComponent implements OnInit {
   @Input() team!: Team
-  constructor() { }
+  expanded: boolean = false;
+  identifier: string = '';
+  constructor() {
 
-  ngOnInit(): void {
   }
 
+  ngOnInit(): void {
+    this.identifier = this.team.name.split(' ').join('_');
+  }
+
+
+  toggleFlag(){
+    this.expanded = !this.expanded;
+  }
 }

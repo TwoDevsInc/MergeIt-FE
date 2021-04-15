@@ -3,10 +3,10 @@
     <div class="row">
       <div class="col-sm-3">
         <div class="list-group">
-          <a href="#" class="list-group-item list-group-item-action-active border-0">
+          <!-- <a href="dashboard" class="list-group-item list-group-item-action-active border-0">
             <div class="row"><i class="bi bi-grid-1x2-fill col-1"></i><span class="col">Inicio</span></div>
-          </a>
-          <a href="#" class="list-group-item list-group-item-action border-0">
+          </a> -->
+          <a href="dashboard" class="list-group-item list-group-item-action-active border-0">
             <div class="row"><i class="bi bi-calendar2-range col-1"></i><span class="col">Tableros</span></div>
           </a>
         </div>
@@ -40,7 +40,7 @@
         <div class="list-group-item list-group-item-action-disabled border-0">
           <div class="row border-bottom pb-2">
             <i class="bi bi-calendar2-range col-sm-1"></i>
-            <span>Tus Paneles</span>
+            <span>Tus Tableros</span>
           </div>
           <div class="column" style="max-height: 700px; overflow-y: auto; overflow-x: hidden;" *ngFor="let team of teams">
             <project-list-main [team]="team" ></project-list-main>

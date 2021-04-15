@@ -13,6 +13,7 @@ export class NewTeamComponent implements OnInit {
   @Input() loggedUser!: User;
   newUsers: User[] = [];
   busqueda: string = '';
+  aux: number = 0;
 
   newTeam: Team = {
     name: "",
@@ -50,30 +51,24 @@ export class NewTeamComponent implements OnInit {
     this.newUsers = [];
   }
 
-  createNewTeam(): void {
 
-    this.teamService.createTeam(this.newTeam).subscribe(
-      t => {
-        const team = { id : t.id, name: "asdsa", users : [], projects : []};
-        const user = { id : 10 , username : "pepe", email : "pepe", name : "asdsad", surname : "dsadas", teams : []};
-        this.teamService.addUserToTeam(user, team);
-        if ( this.newUsers.length > 0) {
-          // this.teamService.addUsersToTeam(this.newUsers, t);
-        }
-      },
-      e => console.log(`No se ha podido crear el nuevo team`)
-    )
-
-    this.newTeam.name = '';
-  }
 
   addUserToTeam(){
-    const team = { id : 35, name: "asdsa", users : [], projects : []};
-    const user = { id : 10 , username : "pepe", email : "pepe", name : "asdsad", surname : "dsadas", teams : []};
+    this.teamService.createTeam(this.newTeam).subscribe(
+      res => {
+        this.aux = res.id!;
+        const team = { id : this.aux, name: "asdsa", users : [], projects : []};
+        // const user = { id : 10 , username : "pepe", email : "pepe", name : "asdsad", surname : "dsadas", teams : []};
+        this.teamService.addUserToTeam(this.loggedUser,team).subscribe(
+          resp => console.log(resp)
+        )
+        if (this.newUsers.length > 0)
+          console.log('hay mas de uno');
+          this.teamService.addUsersToTeam(this.newUsers,team);
+      }
+    );
 
-    this.teamService.addUserToTeam(user,team).subscribe(
-      resp => console.log(resp)
-    )
+
 
   }
 }
