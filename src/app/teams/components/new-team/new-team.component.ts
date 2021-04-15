@@ -79,12 +79,21 @@ export class NewTeamComponent implements OnInit {
         )
          if (this.newUsers.length > 0)
            console.log('hay mas de uno');
-           this.teamService.addUsersToTeam(this.newUsers,team).subscribe();
-           this.newUsers = [];
+           this.teamService.addUsersToTeam(this.newUsers,team).subscribe(
+             res => {
+              this.newUsers = [];
+              window.location.reload();
+             }
+           );
+
+
       }
     );
-
-
-
   }
+
+  deleteUser(user: User){
+    this.newUsers.splice(this.newUsers.indexOf(user));
+  }
+
+
 }

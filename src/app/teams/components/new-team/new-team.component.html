@@ -23,7 +23,7 @@
         <div class="col">
           <ul class="list-group list-group-flush">
             <div *ngFor="let newUser of newUsers">
-              <new-team-user [user]="newUser"></new-team-user>
+              <new-team-user [user]="newUser" (userDeleted)="deleteUser($event)"></new-team-user>
             </div>
           </ul>
         </div>
