@@ -1,8 +1,32 @@
 <div>
     <div class="form-group">
-        <label class="font-weight-bold" for="commentText">{{comment.user.username | titlecase}} 
-            <small id="emailHelp" class="d-inline form-text text-muted">{{comment.createdAt | date:'MMM d, h:mm a'}}</small>
+        <label class="font-weight-bold" for="commentText">{{comment.user!.username | titlecase}}
+            <small id="emailHelp" class="d-inline form-text text-muted">{{comment.createdAt | date:'MMM d, h:mm
+                a'}}</small>
         </label>
-        <input type="text" class="form-control" id="commentText" placeholder="Escribe un comentario" [(ngModel)]="comment.text" disabled>
-      </div>
+        <!-- <input  type="text" class="form-control" id="commentText" placeholder="Escribe un comentario" autocomplete="off" [(ngModel)]="comment.text"> -->
+        <div class="row ml-2">
+            <a (click)="editingComment = true" class="d-inline col list-group-item list-group-item-action p-1 rounded"
+                *ngIf="!editingComment else commentEdit">
+                {{comment.text}}
+            </a>
+            <button *ngIf="!editingComment" class="d-inline ml-2 m-0 btn btn-outline-danger bi bi-x-circle-fill"
+                type="button" id="deleteComment" (click)="deleteComment()">
+            </button>
+
+        </div>
+
+
+        <ng-template #commentEdit>
+            <form (ngSubmit)="editComment()" class="col">
+                <div class="form-group">
+                    <input type="text" class="form-control rounded" id="editCommentId" autocomplete="off"
+                        name="editingComment" [(ngModel)]="comment.text">
+                    <button type="submit" class="btn btn-primary mt-2">Guardar</button>
+                </div>
+
+            </form>
+        </ng-template>
+
+    </div>
 </div>

@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Comment } from '../../interfaces/comment';
+import { CommentService } from '../../services/comment.service';
 
 @Component({
   selector: 'comment',
@@ -8,11 +9,25 @@ import { Comment } from '../../interfaces/comment';
 })
 export class CommentComponent implements OnInit {
 
-  constructor() { }
+  constructor(private commentService : CommentService) { }
 
   ngOnInit(): void {
   }
 
   @Input() comment! : Comment;
+  @Output() deleted = new EventEmitter<Comment>();
+  editingComment : boolean = false;
+
+  editComment(){
+    this.commentService.updateComment(this.comment).subscribe(
+      commentUpdated => this.editingComment = false
+    )
+  }
+
+  deleteComment(){
+    this.commentService.deleteComment(this.comment.id!).subscribe(
+      () => this.deleted.emit()
+    )
+  }
 
 }

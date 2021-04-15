@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { Comment } from 'src/app/comments/interfaces/comment';
@@ -24,6 +24,7 @@ export class TaskModalComponent implements OnInit {
               private teamService : TeamServiceService) { }
 
   ngOnInit(): void {
+
     this.editingTaskTitle = this.task.name;
     this.commentService.getCommentsByTask(this.task).subscribe(
       comments => this.comments = comments
@@ -39,13 +40,12 @@ export class TaskModalComponent implements OnInit {
   @Input() task! : Task;
   comments : Comment[] = [];
   newComment : Comment = {
-	    task : this.task,
-      user : this.authService.getAuthUser,
-      text : ""
+    text : ""
   };
   newCommentInputFocus : boolean = false;
-  editingTask : boolean = false;
+  editinTaskName : boolean = false;
   editingTaskTitle : string = "";
+  editingDescription : boolean = false;
 
   files : File[] = [];
 
@@ -54,14 +54,35 @@ export class TaskModalComponent implements OnInit {
   }
   
   addComment(){
-    console.log(this.newComment)
+    this.newComment.task = this.task;
+    this.newComment.user = this.authService.getAuthUser;
+
+    this.commentService.addCommentToTask(this.newComment, this.task).subscribe(
+      comment => this.comments.push(comment)
+    )
   }
 
   editTask(){
     this.task.name = this.editingTaskTitle;
     this.taskService.updateTask(this.task).subscribe(
-      taskUpdated => this.editingTask = false
+      taskUpdated => this.editinTaskName = false
     )
+  }
+
+  editTaskDescription(){
+    this.taskService.updateTask(this.task).subscribe(
+      taskUpdated => this.editingDescription = false
+    )
+  }
+
+  deleteTask(){
+    this.taskService.deleteTask(this.task.id!).subscribe(
+      () => this.activeModal.close(this.task)
+    )
+  }
+
+  deletedComment(comment : Comment){
+    this.comments = this.comments?.filter(t => t !== comment);
   }
 
 }

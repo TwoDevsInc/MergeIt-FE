@@ -1,27 +1,27 @@
 <div class="modal-header bg-primary text-white">
-    <div>
-        <!-- <h3 class="modal-title">{{task.name | titlecase}}</h3> -->
+    <div class="d-flex flex-column">
         <div>
-            <h3 class="d-inline m-0 mr-2" *ngIf="!editingTask; else taskEdit">
-                {{task.name | titlecase}}<a (click)="editingTask = true" class="h5 bi bi-pen-fill m-0 ml-2"></a>
+            <h3 class="d-inline m-0 mr-2" *ngIf="!editinTaskName; else taskEdit">
+                {{task.name | titlecase}}<a (click)="editinTaskName = true" class="h5 bi bi-pen-fill m-0 ml-2"></a>
             </h3>
-            <ng-template #taskEdit>
+            <ng-template #taskEdit class="m-0">
 
-                <form (ngSubmit)="editTask()">
-                    <div class="row">
-                        <input type="text" class="text-white font-weight-bold bg-primary col form-control ml-2" id="editTaskName" autocomplete="off"
-                            name="editTaskName" [(ngModel)]="editingTaskTitle">
-                        <button type="submit" class="btn btn-light pt-0 pb-0 pr-2 pl-2 ml-1"
-                            [ngClass]="{'disabled': !task.name}">
-                            <i class="bi bi-pen-fill p-0 m-0"></i>
-                        </button>
+                <form (ngSubmit)="editTask()" class="form-inline p-0">
+                    <div class="input-group m-0">
+                        <input type="text" class="form-control" name="editTaskName" id="editingTaskName"
+                            autocomplete="off" [(ngModel)]="editingTaskTitle">
+                        <button type="submit" class="input-group-append btn btn-outline-light ml-2 mb-2"
+                            [ngClass]="{'disabled': !task.name}"><i class="bi bi-pen-fill p-0"></i></button>
                     </div>
+
                 </form>
             </ng-template>
+
         </div>
-        <h5 class="">Lista -> {{task.taskList?.name | titlecase}}</h5>
+        <h5>Lista -> {{task.taskList?.name | titlecase}}</h5>
     </div>
-    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+
+    <button type="button" class="ml-0 d-inline close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
@@ -29,12 +29,23 @@
     <div class="col">
         <div>
             <h5 class="font-weight-bold"><i class="h4 bi bi-card-text mr-2"></i>Descripción</h5>
-            <p>{{task.description}}</p>
-            <a class="list-group-item list-group-item-action">
-                No hay ninguna descripción
-              </a>
+            <a (click)="editingDescription = true" class="list-group-item list-group-item-action border-0"
+                *ngIf="!editingDescription else descriptionEdit">
+                {{task.description || 'No hay ningua descripción'}}
+            </a>
+
+            <ng-template #descriptionEdit>
+
+                <form (ngSubmit)="editTaskDescription()">
+                    <div class="m-3">
+                        <input type="textarea" class="form-control" id="editTaskName" autocomplete="off"
+                            name="editingTaskDescription" [(ngModel)]="task.description">
+                        <button type="submit" class="btn btn-primary mt-2">Guardar</button>
+                    </div>
+                </form>
+            </ng-template>
         </div>
-    
+
         <div>
             <h5 class="font-weight-bold"><i class="h4 bi bi-card-image mr-2"></i>Ficheros</h5>
             <p class="text-muted" *ngIf="!files || files.length === 0">No hay ficheros subidos</p>
@@ -42,28 +53,31 @@
                 <file [file]="file"></file>
             </div>
         </div>
-    
+
         <div>
             <h5 class="font-weight-bold"><i class="h4 bi bi-chat-left-dots mr-2"></i>Comentarios</h5>
             <form (ngSubmit)="addComment()">
                 <div class="form-group">
-                    <input type="text" class="form-control" id="newCommentText" name="newCommentText" placeholder="Escribe un comentario" (blur)="onFocusCommentForm()" (focus)="onFocusCommentForm()" [(ngModel)]="newComment.text">
-                    <button type="submit" class="btn btn-primary mt-2" [disabled]="!newComment.text">Add</button>   
+                    <input type="text" class="form-control" id="newCommentText" name="newCommentText"
+                        placeholder="Escribe un comentario" (blur)="onFocusCommentForm()" (focus)="onFocusCommentForm()"
+                        [(ngModel)]="newComment.text">
+                    <button type="submit" class="btn btn-primary mt-2" [disabled]="!newComment.text">Guardar</button>
                 </div>
-                         
+
             </form>
-            
-            
+
+
             <div *ngFor="let comment of comments" class="list-group m-2 mt-3">
-                <comment [comment]="comment"></comment>
+                <comment [comment]="comment" (deleted)="deletedComment(comment)"></comment>
             </div>
-            
+
         </div>
     </div>
-    <div class="col-3">
-        <button class="btn btn-outline-primary mb-2">Check List</button>
-        <button class="btn btn-outline-danger mb-2">Eliminar tarea</button>
+    <div class="m-2 d-flex flex-column justify-content-start">
+        <button class="d-block btn btn-outline-primary mb-2">Check List</button>
+        <button class="d-block btn btn-outline-danger mb-2" (click)="deleteTask()">Eliminar
+            tarea</button>
     </div>
-    
+
 
 </div>
