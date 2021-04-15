@@ -20,13 +20,7 @@ export class AddUserComponent implements OnInit {
     surname: '',
     teams: []
   };
-  auxTeam: Team = {
-    id: -1,
-    name: '',
-    users: [],
-    projects: []
-  }
-  auxId: number = -1;
+
   constructor(private teamService: TeamServiceService, private userService: UserService, public activeModal: NgbActiveModal) { }
 
   ngOnInit(): void {
@@ -37,15 +31,8 @@ export class AddUserComponent implements OnInit {
   addUser(){
     this.userService.getUserByUsername(this.user.username).subscribe(
       res => {
-        // this.auxId = res.id!;
-        // this.user.id = this.auxId;
-        // this.auxId = this.team.id!;
-        // this.auxTeam.id = this.auxId;
-        // console.log(this.user);
-        // console.log(this.auxTeam);
-        console.log(this.team);
-        console.log(res);
-        // this.teamService.addUserToTeam(this.user, this.team);
+        this.user.id = res.id;
+        this.teamService.addUserToTeam(this.user, this.team).subscribe();
       }
     )
   }

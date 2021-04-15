@@ -60,7 +60,6 @@ export class NewTeamComponent implements OnInit {
         const team = { id : this.aux, name: "asdsa", users : [], projects : []};
         // const user = { id : 10 , username : "pepe", email : "pepe", name : "asdsad", surname : "dsadas", teams : []};
         this.teamService.addUserToTeam(this.loggedUser,team).subscribe(
-          resp => console.log(resp)
         )
         // if (this.newUsers.length > 0)
         //   console.log('hay mas de uno');

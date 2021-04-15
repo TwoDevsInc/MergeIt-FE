@@ -20,16 +20,11 @@ export class AddProjectComponent implements OnInit {
   constructor(public activeModal: NgbActiveModal, private projectService: ProjectService) { }
 
   ngOnInit(): void {
-    console.log(this.team);
   }
 
   addProject() {
-    console.log(this.project.name)
     if (this.project.name !== ''){
-      console.log(`he llegadoooooo`)
-      this.aux = this.team.id!;
-      const team = { id : this.aux, name: "asdsa", users : [], projects : []};
-      this.projectService.addProjectToTeam(this.project,team, 50);
+      this.projectService.addProjectToTeam(this.project,this.team, 50).subscribe();
     }
   }
 
