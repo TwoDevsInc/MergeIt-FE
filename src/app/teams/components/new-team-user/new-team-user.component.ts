@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { User } from 'src/app/users/interfaces/user.interface';
 
 @Component({
@@ -8,9 +8,14 @@ import { User } from 'src/app/users/interfaces/user.interface';
 })
 export class NewTeamUserComponent implements OnInit {
   @Input() user!: User;
+  @Output() userDeleted = new EventEmitter<User>();
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  userDelete(){
+    this.userDeleted.emit(this.user);
+
+  }
 }

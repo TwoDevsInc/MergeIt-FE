@@ -36,6 +36,7 @@ export class AddUserComponent implements OnInit {
           res => {
             // this.team.users.push(this.user);
             this.activeModal.close();
+            window.location.reload();
           }
         );
       }
