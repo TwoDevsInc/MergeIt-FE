@@ -32,7 +32,12 @@ export class MainComponent implements OnInit {
         this.teamService.getTeamsByUser(u.id!).subscribe(
           r => {
             this.teams = r;
-            this.teams.forEach(t => t.projects = []);
+            // this.teams.forEach(t => {
+            //   this.userService.getUserByTeam(t.id!).subscribe(
+            //     res => t.users = res
+            //   )
+            // })
+            // this.teams.forEach(t => t.projects = []);
           }
         )
       },

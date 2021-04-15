@@ -11,6 +11,22 @@ import { TeamServiceService } from '../../services/team-service.service';
 })
 export class NewTeamComponent implements OnInit {
   @Input() loggedUser!: User;
+  // newUsers: User[] = [
+  //   {
+  //     name: '',
+  //     username: 'hola',
+  //     surname: '',
+  //     teams: [],
+  //     email: ''
+  //   },
+  //   {
+  //     name: '',
+  //     username: 'holo',
+  //     surname: '',
+  //     teams: [],
+  //     email: ''
+  //   }
+  // ];
   newUsers: User[] = [];
   busqueda: string = '';
   aux: number = 0;
@@ -34,7 +50,8 @@ export class NewTeamComponent implements OnInit {
         if (u.username == username) {
           console.log(`usuario encontrado correctamente`);
           if(this.newUsers.length < 5){
-            this.newUsers[this.newUsers.length] = u;
+            console.log(this.newUsers.push(u));
+            console.log(this.newUsers);
             console.log(`usuario añadido correctamente al formulario`);
           } else {
             console.log(`se ha excedido el maximo de usuarios`);
@@ -44,7 +61,6 @@ export class NewTeamComponent implements OnInit {
       e => console.log('F por el user')
     )
     this.busqueda = '';
-    this.newUsers = [];
   }
 
   deleteUsersFromNewUsers(): void {
@@ -61,9 +77,10 @@ export class NewTeamComponent implements OnInit {
         // const user = { id : 10 , username : "pepe", email : "pepe", name : "asdsad", surname : "dsadas", teams : []};
         this.teamService.addUserToTeam(this.loggedUser,team).subscribe(
         )
-        // if (this.newUsers.length > 0)
-        //   console.log('hay mas de uno');
-        //   this.teamService.addUsersToTeam(this.newUsers,team);
+         if (this.newUsers.length > 0)
+           console.log('hay mas de uno');
+           this.teamService.addUsersToTeam(this.newUsers,team).subscribe();
+           this.newUsers = [];
       }
     );
 
