@@ -17,11 +17,11 @@ export class AuthService {
 
 
   private AuthUser : User = {
-    id: 9,
-    username: "marcelito jaja",
-    email: "correo@correo.es",
-    name: "Marcelo",
-    surname: "Cordero",
+    id: 0,
+    username: "",
+    email: "",
+    name: "",
+    surname: "",
     teams : []
 };
 
