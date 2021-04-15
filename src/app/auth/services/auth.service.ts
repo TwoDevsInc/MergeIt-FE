@@ -25,7 +25,7 @@ export class AuthService {
     teams : []
 };
 
-  logged$ = of(false);
+  logged : boolean = false;
 
   get getAuthUser(){
     return {...this.AuthUser};
@@ -34,21 +34,13 @@ export class AuthService {
   login(userLogin : UserLogin) : Observable<void>{
     return this.http.post<LoginResponse>(`${this.API_AUTH_URL}/login`,userLogin).pipe(map(resp => {
       this.AuthUser = resp.userLogged;
+      this.logged = true;
       localStorage.setItem("token",resp.jwt);      
     }));
   }
 
   validateToken() : Observable<boolean>{
-
-    const headers = new HttpHeaders().set("token",localStorage.getItem("token") || "");
-
-    return this.http.get<ValidateTokenResponse>("validar", {headers})
-    .pipe( 
-      map( resp => {
-        return resp.ok;
-      }),
-      catchError( error => of(false))
-    );
+    return this.http.get(`${this.API_AUTH_URL}/validateToken`).pipe( map(() => true), catchError(error => of(false)));
   }
 
 }
