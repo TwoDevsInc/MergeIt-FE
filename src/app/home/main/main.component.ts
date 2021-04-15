@@ -5,6 +5,7 @@ import { TeamServiceService } from 'src/app/teams/services/team-service.service'
 import { AddUserComponent } from 'src/app/users/components/add-user/add-user.component';
 import { User } from 'src/app/users/interfaces/user.interface';
 import { UserService } from 'src/app/users/services/user.service';
+import { AuthService } from '../../auth/services/auth.service';
 
 @Component({
   selector: 'main-section',
@@ -17,7 +18,7 @@ export class MainComponent implements OnInit {
   teams? : Team[] = [];
   dhd: string = 'd';
 
-  constructor(private teamService: TeamServiceService, private userService: UserService, private modalService: NgbModal) {
+  constructor(private teamService: TeamServiceService, private userService: UserService, private modalService: NgbModal, private authService : AuthService) {
     this.modalOptions = {
       size: 'lg',
       backdrop:true,
@@ -26,26 +27,13 @@ export class MainComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userService.getUserById(7).subscribe(
-      u => {
-        this.loggedUser = u;
-        this.teamService.getTeamsByUser(u.id!).subscribe(
-          r => {
-            this.teams = r;
-            // this.teams.forEach(t => {
-            //   this.userService.getUserByTeam(t.id!).subscribe(
-            //     res => t.users = res
-            //   )
-            // })
-            // this.teams.forEach(t => t.projects = []);
-          }
-        )
-      },
-      e => console.log(`No se ha posido recuperar el usuario logeado`)
+    this.loggedUser = this.authService.getAuthUser;
+    this.teamService.getTeamsByUser(this.authService.getAuthUser.id!).subscribe(
+      r => {
+        this.teams = r;
+        this.teams.forEach(t => t.projects = []);
+      }
     )
-
-
-
   }
 
   pene(team: Team){
