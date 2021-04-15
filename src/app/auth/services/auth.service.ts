@@ -35,7 +35,8 @@ export class AuthService {
     return this.http.post<LoginResponse>(`${this.API_AUTH_URL}/login`,userLogin).pipe(map(resp => {
       this.AuthUser = resp.userLogged;
       this.logged = true;
-      localStorage.setItem("token",resp.jwt);      
+      localStorage.setItem("token",resp.jwt);    
+      localStorage.setItem("userLogged",resp.userLogged.id + "");
     }));
   }
 
