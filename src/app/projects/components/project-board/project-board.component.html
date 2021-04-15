@@ -3,8 +3,8 @@
         <button class="btn btn-outline-info font-weight-bold" [routerLink]="['/dashboard']">Panel de control</button>
         <div class="d-flex flex-column justify-content-center ml-3">
             <div>
-                <h3 class="d-inline m-0">{{project.team?.name}} | {{project.name}}<a class="h5 bi bi-pen-fill m-0 ml-2"></a></h3>
-                
+                <h3 class="d-inline m-0">{{project.team?.name}} | {{project.name}}<a (click)="editTaskList()" class="h5 bi bi-pen-fill m-0 ml-2"></a></h3>
+                <span>AÑADIR USUARIO</span><a (click)="addUserToTeam()" class="h5 bi bi-pen m-0 ml-2"></a>
             </div>
             
         </div>
