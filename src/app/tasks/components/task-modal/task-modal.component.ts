@@ -7,6 +7,7 @@ import { File } from 'src/app/files/interfaces/file';
 import { Task } from '../../interfaces/task';
 import { TaskService } from '../../services/task.service';
 import { FileService } from '../../../files/services/file.service';
+import { TeamServiceService } from '../../../teams/services/team-service.service';
 
 @Component({
   selector: 'task-modal',
@@ -19,7 +20,8 @@ export class TaskModalComponent implements OnInit {
               private taskService : TaskService,
               private commentService : CommentService,
               private fileService : FileService,
-              private authService : AuthService) { }
+              private authService : AuthService,
+              private teamService : TeamServiceService) { }
 
   ngOnInit(): void {
     this.commentService.getCommentsByTask(this.task).subscribe(
@@ -51,6 +53,5 @@ export class TaskModalComponent implements OnInit {
   addComment(){
     console.log(this.newComment)
   }
-
 
 }

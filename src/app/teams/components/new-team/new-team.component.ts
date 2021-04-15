@@ -13,7 +13,13 @@ export class NewTeamComponent implements OnInit {
   @Input() loggedUser!: User;
   newUsers: User[] = [];
   busqueda: string = '';
-  newTeamName: string = '';
+
+  newTeam: Team = {
+    name: "",
+    users: [],
+    projects: []
+  }
+
   constructor(private userService: UserService, private teamService: TeamServiceService) { }
 
   ngOnInit(): void {
@@ -45,15 +51,12 @@ export class NewTeamComponent implements OnInit {
   }
 
   createNewTeam(): void {
-    let newTeam: Team = {
-      name: this.newTeamName,
-      users: [],
-      projects: []
-    }
 
-    this.teamService.createTeam(newTeam).subscribe(
+    this.teamService.createTeam(this.newTeam).subscribe(
       t => {
-        this.teamService.addUserToTeam(this.loggedUser, t);
+        const team = { id : t.id, name: "asdsa", users : [], projects : []};
+        const user = { id : 10 , username : "pepe", email : "pepe", name : "asdsad", surname : "dsadas", teams : []};
+        this.teamService.addUserToTeam(user, team);
         if ( this.newUsers.length > 0) {
           // this.teamService.addUsersToTeam(this.newUsers, t);
         }
@@ -61,6 +64,16 @@ export class NewTeamComponent implements OnInit {
       e => console.log(`No se ha podido crear el nuevo team`)
     )
 
-    this.newTeamName = '';
+    this.newTeam.name = '';
+  }
+
+  addUserToTeam(){
+    const team = { id : 35, name: "asdsa", users : [], projects : []};
+    const user = { id : 10 , username : "pepe", email : "pepe", name : "asdsad", surname : "dsadas", teams : []};
+
+    this.teamService.addUserToTeam(user,team).subscribe(
+      resp => console.log(resp)
+    )
+
   }
 }

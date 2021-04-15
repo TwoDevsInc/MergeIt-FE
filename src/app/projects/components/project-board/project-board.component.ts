@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { delay, switchMap } from 'rxjs/operators';
 import { TaskListService } from 'src/app/task_lists/services/task-list.service';
 import { TaskList } from 'src/app/task_lists/interfaces/task_list.interface';
+import { TeamServiceService } from 'src/app/teams/services/team-service.service';
 
 @Component({
   selector: 'project-board',
@@ -15,7 +16,8 @@ export class ProjectBoardComponent implements OnInit {
 
   constructor(private projectService : ProjectService, 
               private activatedRoute: ActivatedRoute,
-              private taskListService : TaskListService) { }
+              private taskListService : TaskListService,
+              private teamService : TeamServiceService) { }
 
   ngOnInit(): void {
     this.activatedRoute.params
@@ -60,6 +62,12 @@ export class ProjectBoardComponent implements OnInit {
   }
 
   addUserToTeam(){
+    const team = { id : 20, name: "asdsa", users : [], projects : []};
+    const user = { id : 10 , username : "pepe", email : "pepe", name : "asdsad", surname : "dsadas", teams : []};
+
+    this.teamService.addUserToTeam(user,team).subscribe(
+      resp => console.log(resp)
+    )
 
   }
 
