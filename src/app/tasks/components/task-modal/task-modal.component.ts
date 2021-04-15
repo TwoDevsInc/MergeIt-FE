@@ -24,6 +24,7 @@ export class TaskModalComponent implements OnInit {
               private teamService : TeamServiceService) { }
 
   ngOnInit(): void {
+    this.editingTaskTitle = this.task.name;
     this.commentService.getCommentsByTask(this.task).subscribe(
       comments => this.comments = comments
     )
@@ -43,6 +44,8 @@ export class TaskModalComponent implements OnInit {
       text : ""
   };
   newCommentInputFocus : boolean = false;
+  editingTask : boolean = false;
+  editingTaskTitle : string = "";
 
   files : File[] = [];
 
@@ -52,6 +55,13 @@ export class TaskModalComponent implements OnInit {
   
   addComment(){
     console.log(this.newComment)
+  }
+
+  editTask(){
+    this.task.name = this.editingTaskTitle;
+    this.taskService.updateTask(this.task).subscribe(
+      taskUpdated => this.editingTask = false
+    )
   }
 
 }

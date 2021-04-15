@@ -46,6 +46,15 @@ export class ProjectBoardComponent implements OnInit {
     name : "",
     archived : false
   }
+
+  editingProjectName : boolean = false;
+
+  editProject(){
+    
+    this.projectService.updateProject(this.project).subscribe(
+      teamUpdated => this.editingProjectName = false
+    )
+  }
   
   addTaskList(){
     this.taskListService.addTaskListToProject(this.newTaskList,this.project).subscribe(
@@ -56,9 +65,8 @@ export class ProjectBoardComponent implements OnInit {
   }
 
   editTaskList(){
-    this.projectService.updateProject(this.project).subscribe(
-      project => console.log(project)
-    )
+
+    
   }
 
   addUserToTeam(){

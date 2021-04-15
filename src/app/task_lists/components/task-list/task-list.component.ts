@@ -59,7 +59,10 @@ export class TaskListComponent implements OnInit {
   }
 
   editTaskList(){
-    this.editingTaskList = false;
+    
+    this.taskListService.updateTaskList(this.taskList).subscribe(
+      taskListUpdated => this.editingTaskList = false
+    )
   }
 
 
