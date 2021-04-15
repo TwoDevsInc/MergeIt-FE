@@ -19,9 +19,6 @@ export class TeamServiceService {
   }
 
   addUserToTeam(user: User, team: Team): Observable<Team>{
-    console.log('servicio------')
-    console.log(user);
-    console.log(team);
     return this.http.put<Team>(`${this.baseURL}/addUser/${team.id}`, user);
   }
 
