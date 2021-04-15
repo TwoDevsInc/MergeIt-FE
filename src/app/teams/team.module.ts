@@ -17,6 +17,7 @@ import { FormsModule } from '@angular/forms';
   ],
   exports: [
     NewTeamComponent,
+    TeamNavItemMainComponent
   ]
 })
 export class TeamModule { }
