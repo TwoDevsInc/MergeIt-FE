@@ -43,6 +43,12 @@ export class TaskListComponent implements OnInit {
   openTaskModal(task : Task) {
     const modalRef = this.modalService.open(TaskModalComponent, this.modalOptions);
     modalRef.componentInstance.task = task;
+
+    modalRef.result.then((result) => {
+      let index = this.taskList.tasks?.indexOf(task);
+      this.taskList.tasks?.splice(index!);
+    }, (reason) => {
+    });
   }
 
   addTask(){

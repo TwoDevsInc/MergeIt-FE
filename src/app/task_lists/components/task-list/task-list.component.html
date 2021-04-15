@@ -2,9 +2,18 @@
     <div class="card mb-2">
         <div class="card-header">
             <div class="row" *ngIf="!editingTaskList; else taskListEdit">
-                <div class="col">{{taskList.name | titlecase}}</div>
-                <a (click)="editingTaskList = true" class="bi bi-pen-fill m-0 mr-1"></a>
-                <a (click)="deleteTaskList()" class="bi bi-x-circle-fill text-danger mr-2"></a>
+                <div class="col d-flex flex-column justify-content-center">{{taskList.name | titlecase}}</div>
+                <div class="dropdown">
+                    <button class="m-0 btn btn-light" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="bi-three-dots m-0 mr-1"></i>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <a class="dropdown-item" (click)="editingTaskList = true" >Editar</a>
+                      <a class="dropdown-item text-danger" (click)="deleteTaskList()" >Eliminar</a>
+                    </div>
+                  </div>
+                <!-- <a  class="bi bi-pen-fill m-0 mr-1"></a>
+                <a  class="bi bi-x-circle-fill text-danger mr-2"></a> -->
             </div>
             <ng-template #taskListEdit>
 
@@ -37,4 +46,7 @@
             </li>
         </div>
     </div>
+    
 </span>
+
+
