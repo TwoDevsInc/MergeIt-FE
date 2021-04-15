@@ -11,6 +11,7 @@ import { ProjectsModule } from './projects/projects.module';
 import { TaskModule } from './tasks/task.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
+import { JwtInterceptor } from './interceptors/jwt.interceptor';
 
 
 @NgModule({
@@ -30,7 +31,12 @@ import { FormsModule } from '@angular/forms';
       provide: HTTP_INTERCEPTORS,
       useClass: ServerUrlInterceptor,
       multi: true,
-    }
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true,
+      }
   ],
   bootstrap: [AppComponent]
 })
