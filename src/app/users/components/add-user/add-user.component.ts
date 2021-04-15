@@ -32,7 +32,13 @@ export class AddUserComponent implements OnInit {
     this.userService.getUserByUsername(this.user.username).subscribe(
       res => {
         this.user.id = res.id;
-        this.teamService.addUserToTeam(this.user, this.team).subscribe();
+        this.teamService.addUserToTeam(this.user, this.team).subscribe(
+          res => {
+            // this.team.users.push(this.user);
+            this.activeModal.close();
+            window.location.reload();
+          }
+        );
       }
     )
   }
