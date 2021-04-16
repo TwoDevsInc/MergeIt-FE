@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { take, map } from 'rxjs/operators';
 import { AuthService } from '../auth/services/auth.service';
 import { UserService } from '../users/services/user.service';
 
@@ -15,17 +15,22 @@ export class LoginGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      
-      return this.authService.validateToken().pipe( tap( valid => {
-        if(!valid)
-          this.router.navigateByUrl("/login")
-      }))
+      let isAuthenticated = false;
+      const token = localStorage.getItem("token");
+      if(token !== null){
+        const tokenObject = JSON.parse(token);
+        this.authService.AuthUser = tokenObject.userLogged;
+        this.authService.isAuthenticated$.next(true)     
+      }
+      this.authService.isAuthenticated$.subscribe( data => {
+        isAuthenticated = data;            
+    });    
 
-      // const token = localStorage.getItem("token");
-      // if(token) {
-      //   return true;
-      // }
-      // return this.router.createUrlTree(['/login']);
+    if(!isAuthenticated){
+      this.router.navigateByUrl('/login');
+    }
+
+    return this.authService.isAuthenticated$.pipe( take(1));
   }
   
 }

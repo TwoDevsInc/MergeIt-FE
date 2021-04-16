@@ -14,84 +14,59 @@ import { NewTeamComponent } from '../../teams/components/new-team/new-team.compo
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
-  modalOptions:NgbModalOptions;
+  modalOptions: NgbModalOptions;
   loggedUser!: User;
-  teams? : Team[] = [];
+  teams?: Team[] = [];
   dhd: string = 'd';
 
-  constructor(private teamService: TeamServiceService, private userService: UserService, private modalService: NgbModal, private authService : AuthService) {
+  constructor(private teamService: TeamServiceService, private userService: UserService, private modalService: NgbModal, private authService: AuthService) {
     this.modalOptions = {
       size: 'lg',
-      backdrop:true,
-      backdropClass:'customBackdrop'
+      backdrop: true,
+      backdropClass: 'customBackdrop'
     }
   }
 
   ngOnInit(): void {
-    if(this.authService.logged){
-      this.loggedUser = this.authService.getAuthUser;
-      const userLogged = localStorage.getItem("userLogged")
-      if(userLogged){
-        this.teamService.getTeamsByUser(+userLogged).subscribe(
-          r => {
-            this.loggedUser.teams = r;
-            this.loggedUser.teams.forEach(t => t.projects = []);
-          }
-        )
-      }else{
-        this.teamService.getTeamsByUser(this.loggedUser.id!).subscribe(
-          r => {
-            this.loggedUser.teams = r;
-            this.loggedUser.teams.forEach(t => t.projects = []);
-          }
-        )
+
+    this.authService.isAuthenticated$.subscribe(
+      loggedIn => {
+        if (loggedIn) {
+          this.loggedUser = this.authService.getAuthUser;
+          this.teamService.getTeamsByUser(this.authService.getAuthUser.id!).subscribe(
+            r => {
+              this.loggedUser.teams = r;
+              this.loggedUser.teams.forEach(t => t.projects = []);
+            }
+          )
+          
+        }
       }
-      
-    }
-    else{
-      console.log("ENTRO EN LA SEGUNDA",this.loggedUser)
-      const userLogged = localStorage.getItem("userLogged")
-      console.log(userLogged)
-      if(userLogged){        
-        this.authService.logged = true;
-        this.teamService.getTeamsByUser(+userLogged).subscribe(
-          r => {
-            this.userService.getUserById(+userLogged).subscribe(
-              userResp => {
-                this.loggedUser = userResp;
-                this.loggedUser.teams = r;
-                this.loggedUser.teams.forEach(t => t.projects = []);
-              }
-            )
-            
-          }
-        )
-      }
-
-    }
-    
+    )
   }
 
-  openAddUserModal(team: Team) {
-    const modalRef = this.modalService.open(AddUserComponent, this.modalOptions);
-    modalRef.componentInstance.team = team;
 
-    modalRef.result.then((result) => {
-      console.log(result);
-    }, (reason) => {
 
-    });
+openAddUserModal(team: Team) {
+  const modalRef = this.modalService.open(AddUserComponent, this.modalOptions);
+  modalRef.componentInstance.team = team;
 
-  }
+  modalRef.result.then((result) => {
+    console.log(result);
+  }, (reason) => {
 
-  openAddTeamModal(){
-    const modalRef = this.modalService.open(NewTeamComponent, this.modalOptions);
-    modalRef.componentInstance.loggedUser = this.loggedUser;
+  });
 
-    modalRef.result.then((result) => {
-    }, (reason) => {
+}
 
-    });
-  }
+openAddTeamModal(){
+  const modalRef = this.modalService.open(NewTeamComponent, this.modalOptions);
+  modalRef.componentInstance.loggedUser = this.loggedUser;
+
+  modalRef.result.then((result) => {
+  }, (reason) => {
+
+  });
+}
 
 }

@@ -34,7 +34,6 @@ export class TeamNavItemMainComponent implements OnInit {
     modalRef.componentInstance.team = this.team;
 
     modalRef.result.then((result) => {
-      console.log(result);
     }, (reason) => {
 
     });
