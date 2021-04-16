@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { User, UserLogin } from 'src/app/users/interfaces/user.interface';
+import { NewUser, User, UserLogin } from 'src/app/users/interfaces/user.interface';
 import { Observable, of, ReplaySubject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { LoginResponse } from '../interfaces/login-response';
@@ -58,6 +58,10 @@ export class AuthService {
 
   validateToken(): Observable<boolean> {
     return this.http.get(`${this.API_AUTH_URL}/validateToken`).pipe(map(() => true), catchError(error => of(false)));
+  }
+
+  register(user: NewUser) : Observable<void>{
+    return this.http.post<void>(`${this.API_AUTH_URL}/register`, user);
   }
 
 }
