@@ -8,6 +8,8 @@ import { Task } from '../../interfaces/task';
 import { TaskService } from '../../services/task.service';
 import { FileService } from '../../../files/services/file.service';
 import { TeamServiceService } from '../../../teams/services/team-service.service';
+import { map } from 'rxjs/operators';
+import { UserService } from '../../../users/services/user.service';
 
 @Component({
   selector: 'task-modal',
@@ -21,7 +23,8 @@ export class TaskModalComponent implements OnInit {
               private commentService : CommentService,
               private fileService : FileService,
               private authService : AuthService,
-              private teamService : TeamServiceService) { }
+              private teamService : TeamServiceService,
+              private userService : UserService) { }
 
   ngOnInit(): void {
 
@@ -40,7 +43,14 @@ export class TaskModalComponent implements OnInit {
   @Input() task! : Task;
   comments : Comment[] = [];
   newComment : Comment = {
-    text : ""
+    text : "",
+    user : {
+      username : "",
+	    email : "",
+      name: "",
+      surname: "",
+      teams : []
+    }
   };
   newCommentInputFocus : boolean = false;
   editinTaskName : boolean = false;
@@ -55,11 +65,20 @@ export class TaskModalComponent implements OnInit {
   
   addComment(){
     this.newComment.task = this.task;
-    this.newComment.user = this.authService.getAuthUser;
-
-    this.commentService.addCommentToTask(this.newComment, this.task).subscribe(
-      comment => this.comments.push(comment)
+    
+    const userLoggedId = localStorage.getItem("userLogged");
+    this.userService.getUserById(+userLoggedId!).subscribe(
+      userLogged => {
+        this.newComment.user = userLogged;
+        this.commentService.addCommentToTask(this.newComment, this.task).subscribe(
+          comment => this.comments.push(comment)
+        )
+        this.resetCommentInput()
+      }
     )
+    
+
+    
   }
 
   editTask(){
@@ -83,6 +102,10 @@ export class TaskModalComponent implements OnInit {
 
   deletedComment(comment : Comment){
     this.comments = this.comments?.filter(t => t !== comment);
+  }
+
+  resetCommentInput(){
+    this.newComment.text = ""
   }
 
 }

@@ -30,18 +30,30 @@ export class MainComponent implements OnInit {
   ngOnInit(): void {
     if(this.authService.logged){
       this.loggedUser = this.authService.getAuthUser;
-      this.teamService.getTeamsByUser(this.authService.getAuthUser.id!).subscribe(
-        r => {
-          this.loggedUser.teams = r;
-          // this.teams = r;
-          this.loggedUser.teams.forEach(t => t.projects = []);
-        }
-      )
+      const userLogged = localStorage.getItem("userLogged")
+      if(userLogged){
+        this.teamService.getTeamsByUser(+userLogged).subscribe(
+          r => {
+            this.loggedUser.teams = r;
+            this.loggedUser.teams.forEach(t => t.projects = []);
+          }
+        )
+      }else{
+        this.teamService.getTeamsByUser(this.loggedUser.id!).subscribe(
+          r => {
+            this.loggedUser.teams = r;
+            this.loggedUser.teams.forEach(t => t.projects = []);
+          }
+        )
+      }
+      
     }
     else{
+      console.log("ENTRO EN LA SEGUNDA",this.loggedUser)
       const userLogged = localStorage.getItem("userLogged")
       console.log(userLogged)
-      if(userLogged){
+      if(userLogged){        
+        this.authService.logged = true;
         this.teamService.getTeamsByUser(+userLogged).subscribe(
           r => {
             this.userService.getUserById(+userLogged).subscribe(
