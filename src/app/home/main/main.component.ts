@@ -33,7 +33,7 @@ export class MainComponent implements OnInit {
       loggedIn => {
         if (loggedIn) {
           this.loggedUser = this.authService.getAuthUser;
-          this.teamService.getTeamsByUser(this.loggedUser.id!).subscribe(
+          this.teamService.getTeamsByUser(this.authService.getAuthUser.id!).subscribe(
             r => {
               this.loggedUser.teams = r;
               this.loggedUser.teams.forEach(t => t.projects = []);

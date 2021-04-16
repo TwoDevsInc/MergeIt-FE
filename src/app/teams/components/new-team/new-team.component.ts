@@ -4,6 +4,7 @@ import { UserService } from 'src/app/users/services/user.service';
 import { Team } from '../../interfaces/team.interface';
 import { TeamServiceService } from '../../services/team-service.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { AuthService } from '../../../auth/services/auth.service';
 
 @Component({
   selector: 'new-team',
@@ -16,6 +17,7 @@ export class NewTeamComponent implements OnInit {
   newUsers: User[] = [];
   busqueda: string = '';
   aux: number = 0;
+  noEncontrado : boolean = false;
 
   newTeam: Team = {
     name: "",
@@ -23,7 +25,7 @@ export class NewTeamComponent implements OnInit {
     projects: []
   }
 
-  constructor(private userService: UserService, private teamService: TeamServiceService, public activeModal : NgbActiveModal) { }
+  constructor(private userService: UserService, private teamService: TeamServiceService, public activeModal : NgbActiveModal, private authService : AuthService) { }
 
   ngOnInit(): void {
     console.log(this.loggedUser)
@@ -35,6 +37,7 @@ export class NewTeamComponent implements OnInit {
       u => {
         if (u.username == username) {
           console.log(`usuario encontrado correctamente`);
+          this.noEncontrado = false;
           if (this.newUsers.length < 5) {
             console.log(this.newUsers.push(u));
             console.log(this.newUsers);
@@ -44,7 +47,7 @@ export class NewTeamComponent implements OnInit {
           }
         }
       },
-      e => console.log('F por el user')
+      e => this.noEncontrado = true
     )
     this.busqueda = '';
   }
@@ -58,7 +61,7 @@ export class NewTeamComponent implements OnInit {
   addUserToTeam() {
     this.teamService.createTeam(this.newTeam).subscribe(
       newTeam => {
-        this.teamService.addUserToTeam(this.loggedUser, newTeam).subscribe(
+        this.teamService.addUserToTeam(this.authService.AuthUser, newTeam).subscribe(
           team => {
             this.loggedUser.teams.push(team);
             if (this.newUsers.length > 0){

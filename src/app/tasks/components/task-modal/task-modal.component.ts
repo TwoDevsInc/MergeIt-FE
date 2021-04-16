@@ -65,17 +65,12 @@ export class TaskModalComponent implements OnInit {
   
   addComment(){
     this.newComment.task = this.task;
-    
-    const userLoggedId = localStorage.getItem("userLogged");
-    this.userService.getUserById(+userLoggedId!).subscribe(
-      userLogged => {
-        this.newComment.user = userLogged;
-        this.commentService.addCommentToTask(this.newComment, this.task).subscribe(
-          comment => this.comments.push(comment)
-        )
-        this.resetCommentInput()
-      }
+    this.newComment.user = this.authService.AuthUser;
+
+    this.commentService.addCommentToTask(this.newComment, this.task).subscribe(
+      comment => this.comments.push(comment)
     )
+    this.resetCommentInput();
     
 
     

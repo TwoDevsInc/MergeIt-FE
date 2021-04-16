@@ -18,8 +18,11 @@
             <div class="input-group mb-3">
               <input type="text" class="form-control" placeholder="Introduce el nombre del integrante" [(ngModel)]="busqueda" name="busqueda">
               <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="button" id="addMemeberButton" (click)="addMember()">Añadir</button>
-              </div>
+                <button class="btn btn-outline-secondary" type="button" id="addMemeberButton" (click)="addMember()" [disabled]="!busqueda">Añadir</button>
+              </div>              
+            </div>
+            <div class="alert alert-danger" role="alert" *ngIf="noEncontrado">
+              Nombre de usuario no encontrado
             </div>
           </div>
         </div>

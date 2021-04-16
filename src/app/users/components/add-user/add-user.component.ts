@@ -20,6 +20,7 @@ export class AddUserComponent implements OnInit {
     surname: '',
     teams: []
   };
+  noEncontrado : boolean = false;
 
   constructor(private teamService: TeamServiceService, private userService: UserService, public activeModal: NgbActiveModal) { }
 
@@ -32,11 +33,13 @@ export class AddUserComponent implements OnInit {
         this.user.id = res.id;
         this.teamService.addUserToTeam(this.user, this.team).subscribe(
           res => {
+            this.noEncontrado = false;
             this.team.users.push(this.user);
             this.activeModal.close();
           }
         );
-      }
+      },
+      error => this.noEncontrado = true
     )
   }
 

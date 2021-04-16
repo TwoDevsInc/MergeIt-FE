@@ -17,7 +17,7 @@ export class AuthService {
 
   API_AUTH_URL = "auth"
 
-  private AuthUser: User = {
+  public AuthUser: User = {
     id: 0,
     username: "",
     email: "",
@@ -36,7 +36,7 @@ export class AuthService {
   login(userLogin: UserLogin): Observable<void> {
     return this.http.post<LoginResponse>(`${this.API_AUTH_URL}/login`, userLogin).pipe(map(resp => {
       this.AuthUser = resp.userLogged;
-      localStorage.setItem("token", resp.jwt);
+      localStorage.setItem("token", JSON.stringify(resp));
       this.isAuthenticated$.next(true);      
     }));
   }

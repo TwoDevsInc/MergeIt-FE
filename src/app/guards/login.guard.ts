@@ -15,17 +15,17 @@ export class LoginGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      
       let isAuthenticated = false;
+      const token = localStorage.getItem("token");
+      if(token !== null){
+        const tokenObject = JSON.parse(token);
+        this.authService.AuthUser = tokenObject.userLogged;
+        this.authService.isAuthenticated$.next(true)     
+      }
+      this.authService.isAuthenticated$.subscribe( data => {
+        isAuthenticated = data;            
+    });    
 
-      this.authService.isAuthenticated$.pipe( map(value => {
-        if(localStorage.getItem("token") !== null)
-          return true;
-        else return false;
-      })).subscribe( data => {
-        isAuthenticated = data;        
-    });  
-    
     if(!isAuthenticated){
       this.router.navigateByUrl('/login');
     }
