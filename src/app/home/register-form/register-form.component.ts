@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { AuthService } from 'src/app/auth/services/auth.service';
 import { NewUser } from '../../users/interfaces/user.interface';
 
 @Component({
@@ -9,7 +10,7 @@ import { NewUser } from '../../users/interfaces/user.interface';
 })
 export class RegisterFormComponent implements OnInit {
 
-  constructor(public activeModal : NgbActiveModal) { }
+  constructor(public activeModal : NgbActiveModal, private authService: AuthService) { }
 
   ngOnInit(): void {
   }
@@ -23,7 +24,11 @@ export class RegisterFormComponent implements OnInit {
   }
 
   registerUser(){
-
+    this.authService.register(this.newUserRegister).subscribe(
+      () => {
+        this.activeModal.close();
+      }
+    )
   }
 
 }
