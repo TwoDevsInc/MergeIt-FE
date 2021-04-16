@@ -7,6 +7,7 @@ import { NewTeamUserComponent } from './components/new-team-user/new-team-user.c
 import { FormsModule } from '@angular/forms';
 import { UsersModule } from '../users/users.module';
 import { ProjectsModule } from '../projects/projects.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -17,7 +18,8 @@ import { ProjectsModule } from '../projects/projects.module';
     HttpClientModule,
     FormsModule,
     UsersModule,
-    ProjectsModule
+    ProjectsModule,
+    NgbModule
   ],
   exports: [
     NewTeamComponent,

@@ -6,6 +6,7 @@ import { AddUserComponent } from 'src/app/users/components/add-user/add-user.com
 import { User } from 'src/app/users/interfaces/user.interface';
 import { UserService } from 'src/app/users/services/user.service';
 import { AuthService } from '../../auth/services/auth.service';
+import { NewTeamComponent } from '../../teams/components/new-team/new-team.component';
 
 @Component({
   selector: 'main-section',
@@ -31,8 +32,9 @@ export class MainComponent implements OnInit {
       this.loggedUser = this.authService.getAuthUser;
       this.teamService.getTeamsByUser(this.authService.getAuthUser.id!).subscribe(
         r => {
-          this.teams = r;
-          this.teams.forEach(t => t.projects = []);
+          this.loggedUser.teams = r;
+          // this.teams = r;
+          this.loggedUser.teams.forEach(t => t.projects = []);
         }
       )
     }
@@ -42,22 +44,15 @@ export class MainComponent implements OnInit {
       if(userLogged){
         this.teamService.getTeamsByUser(+userLogged).subscribe(
           r => {
-            this.teams = r;
-            this.teams.forEach(t => t.projects = []);
+            this.loggedUser.teams = r;
+            // this.teams = r;
+            this.loggedUser.teams.forEach(t => t.projects = []);
           }
         )
       }
 
     }
     
-  }
-
-  pene(team: Team){
-    console.log(team);
-  }
-
-  addUser(team: Team){
-
   }
 
   openAddUserModal(team: Team) {
@@ -70,6 +65,17 @@ export class MainComponent implements OnInit {
 
     });
 
+  }
+
+  openAddTeamModal(){
+    const modalRef = this.modalService.open(NewTeamComponent, this.modalOptions);
+    modalRef.componentInstance.loggedUser = this.loggedUser;
+
+    modalRef.result.then((result) => {
+      console.log(result);
+    }, (reason) => {
+
+    });
   }
 
 }

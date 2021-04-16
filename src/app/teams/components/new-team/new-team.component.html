@@ -1,39 +1,48 @@
-<div class="row justify-content-center">
-  <div class="col">
-    <form>
-      <div class="form-group row">
-        <div class="col">
-          <label for="name" class="form-label">Nombre del Equipo</label>
-          <input id="name" name="name" type="text" class="form-control" required="required"
-            placeholder="Introduce nombre del equipo" [(ngModel)]="newTeam.name" name="newTeamName">
+<div class="modal-header bg-primary">
+  <h3 class="modal-title text-white" id="addNewMemberModalLabel">Añadir equipo</h3>
+</div>
+<div class="modal-body">
+  <div class="row justify-content-center">
+    <div class="col">
+      <form>
+        <div class="form-group row">
+          <div class="col">
+            <label for="name" class="form-label">Nombre del Equipo</label>
+            <input id="name" name="name" type="text" class="form-control" required="required"
+              placeholder="Introduce nombre del equipo" [(ngModel)]="newTeam.name" name="newTeamName">
+          </div>
         </div>
-      </div>
-      <div class="form-group row">
-        <div class="col">
-          <label for="newUser" class="form-label">Nuevo Integrante</label>
-          <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Introduce el nombre del integrante" [(ngModel)]="busqueda" name="busqueda">
-            <div class="input-group-append">
-              <button class="btn btn-outline-secondary" type="button" id="addMemeberButton" (click)="addMember()">Añadir</button>
+        <div class="form-group row">
+          <div class="col">
+            <label for="newUser" class="form-label">Nuevo Integrante</label>
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" placeholder="Introduce el nombre del integrante" [(ngModel)]="busqueda" name="busqueda">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button" id="addMemeberButton" (click)="addMember()">Añadir</button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="form-group row">
-        <div class="col">
-          <ul class="list-group list-group-flush">
-            <div *ngFor="let newUser of newUsers">
-              <new-team-user [user]="newUser" (userDeleted)="deleteUser($event)"></new-team-user>
-            </div>
-          </ul>
+        <div class="form-group row">
+          <div class="col">
+            <ul class="list-group list-group-flush">
+              <div *ngFor="let newUser of newUsers">
+                <new-team-user [user]="newUser" (userDeleted)="deleteUser($event)"></new-team-user>
+              </div>
+            </ul>
+          </div>
         </div>
-      </div>
-      <div class="form-group col">
-        <div class="row d-flex justify-content-end">
-          <button type="button" class="btn btn-danger col-6 mr-3" (click)="deleteUsersFromNewUsers()">Vaciar miembros</button>
-          <button name="submit" type="submit" class="btn btn-block btn-primary col-4 " (click)="addUserToTeam()" >Crear Equipo</button>
+        <div class="form-group col">
+          <div class="row d-flex justify-content-end">
+            <button type="button" class="btn btn-danger col-6 mr-3" (click)="deleteUsersFromNewUsers()">Vaciar miembros</button>
+            <button name="submit" class="btn btn-block btn-primary col-4 " (click)="addUserToTeam()" >Crear Equipo</button>
+          </div>
         </div>
-      </div>
-    </form>
+      </form>
+    </div>
   </div>
+  
 </div>
+
+
+
