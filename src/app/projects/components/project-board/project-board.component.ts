@@ -69,16 +69,6 @@ export class ProjectBoardComponent implements OnInit {
     
   }
 
-  addUserToTeam(){
-    const team = { id : 20, name: "asdsa", users : [], projects : []};
-    const user = { id : 10 , username : "pepe", email : "pepe", name : "asdsad", surname : "dsadas", teams : []};
-
-    this.teamService.addUserToTeam(user,team).subscribe(
-      resp => console.log(resp)
-    )
-
-  }
-
   deleteTaskList(taskList: TaskList): void {
     this.project.taskLists = this.project.taskLists?.filter(t => t !== taskList);
   }

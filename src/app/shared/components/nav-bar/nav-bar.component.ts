@@ -11,6 +11,7 @@ import { RegisterFormComponent } from '../../../home/register-form/register-form
 export class NavBarComponent implements OnInit {
 
   modalOptions:NgbModalOptions;
+  loggedIn : boolean = false;
 
   constructor(private modalService: NgbModal, public authService : AuthService) {
     this.modalOptions = {
@@ -21,6 +22,9 @@ export class NavBarComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.authService.isAuthenticated$.subscribe(
+      logged => this.loggedIn = logged
+    )
   }
 
   openRegisterModal() {

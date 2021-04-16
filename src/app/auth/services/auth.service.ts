@@ -26,7 +26,8 @@ export class AuthService {
     teams: []
   };
 
-  logged: boolean = false;
+  // logged: boolean = false;
+  public isAuthenticated$ = new ReplaySubject<boolean>(1);
 
   get getAuthUser() {
     return { ...this.AuthUser };
@@ -35,16 +36,15 @@ export class AuthService {
   login(userLogin: UserLogin): Observable<void> {
     return this.http.post<LoginResponse>(`${this.API_AUTH_URL}/login`, userLogin).pipe(map(resp => {
       this.AuthUser = resp.userLogged;
-      this.logged = true;
       localStorage.setItem("token", resp.jwt);
-      localStorage.setItem("userLogged", resp.userLogged.id + "");
+      this.isAuthenticated$.next(true);      
     }));
   }
 
   logout() {
     localStorage.removeItem("token");
     localStorage.removeItem("userLogged");
-    this.logged = false;
+    this.isAuthenticated$.next(false);
     this.AuthUser = {
       id: 0,
       username: "",
