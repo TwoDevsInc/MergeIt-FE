@@ -3,6 +3,7 @@ import { User } from 'src/app/users/interfaces/user.interface';
 import { UserService } from 'src/app/users/services/user.service';
 import { Team } from '../../interfaces/team.interface';
 import { TeamServiceService } from '../../services/team-service.service';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'new-team',
@@ -11,22 +12,7 @@ import { TeamServiceService } from '../../services/team-service.service';
 })
 export class NewTeamComponent implements OnInit {
   @Input() loggedUser!: User;
-  // newUsers: User[] = [
-  //   {
-  //     name: '',
-  //     username: 'hola',
-  //     surname: '',
-  //     teams: [],
-  //     email: ''
-  //   },
-  //   {
-  //     name: '',
-  //     username: 'holo',
-  //     surname: '',
-  //     teams: [],
-  //     email: ''
-  //   }
-  // ];
+
   newUsers: User[] = [];
   busqueda: string = '';
   aux: number = 0;
@@ -37,10 +23,10 @@ export class NewTeamComponent implements OnInit {
     projects: []
   }
 
-  constructor(private userService: UserService, private teamService: TeamServiceService) { }
+  constructor(private userService: UserService, private teamService: TeamServiceService, public activeModal : NgbActiveModal) { }
 
   ngOnInit(): void {
-
+    console.log(this.loggedUser)
   }
 
   addMember(): void {
@@ -49,7 +35,7 @@ export class NewTeamComponent implements OnInit {
       u => {
         if (u.username == username) {
           console.log(`usuario encontrado correctamente`);
-          if(this.newUsers.length < 5){
+          if (this.newUsers.length < 5) {
             console.log(this.newUsers.push(u));
             console.log(this.newUsers);
             console.log(`usuario añadido correctamente al formulario`);
@@ -69,29 +55,34 @@ export class NewTeamComponent implements OnInit {
 
 
 
-  addUserToTeam(){
+  addUserToTeam() {
     this.teamService.createTeam(this.newTeam).subscribe(
-      res => {
-        this.aux = res.id!;
-        const team = { id : this.aux, name: "asdsa", users : [], projects : []};
-        // const user = { id : 10 , username : "pepe", email : "pepe", name : "asdsad", surname : "dsadas", teams : []};
-        this.teamService.addUserToTeam(this.loggedUser,team).subscribe(
+      newTeam => {
+        this.teamService.addUserToTeam(this.loggedUser, newTeam).subscribe(
+          team => {
+            this.loggedUser.teams.push(team);
+            if (this.newUsers.length > 0){
+              this.teamService.addUsersToTeam(this.newUsers, team).subscribe(
+                teamWithUsers => { 
+                  let index = this.loggedUser.teams.indexOf(team)
+                  this.loggedUser.teams[index] = teamWithUsers
+                  this.newUsers = []; 
+                  this.activeModal.close();  
+                });
+            }
+            else{
+              this.activeModal.close()
+            }
+              
+          }
         )
-         if (this.newUsers.length > 0)
-           console.log('hay mas de uno');
-           this.teamService.addUsersToTeam(this.newUsers,team).subscribe(
-             res => {
-              this.newUsers = [];
-              window.location.reload();
-             }
-           );
 
 
       }
     );
   }
 
-  deleteUser(user: User){
+  deleteUser(user: User) {
     this.newUsers.splice(this.newUsers.indexOf(user));
   }
 

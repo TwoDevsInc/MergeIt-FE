@@ -27,7 +27,6 @@ export class AddProjectComponent implements OnInit {
       this.projectService.addProjectToTeam(this.project,this.team, 50).subscribe(
         res => {
           this.activeModal.close()
-          window.location.reload();
         }
       );
     }
