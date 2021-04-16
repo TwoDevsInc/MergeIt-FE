@@ -1,11 +1,11 @@
 <div class="row mt-2">
   <span class="ml-4">{{team.name}}</span>
   <span class="pr-3 pl-3">|</span>
-  <span>{{count}} integrantes</span>
+  <span>{{team.users.length}} integrantes</span>
 </div>
 
 <div class="row" style="max-height: 160px; overflow: auto;">
-  <div  *ngFor="let project of projects">
+  <div  *ngFor="let project of team.projects">
       <project-card-main class="pointerCursor" [project]="project" [routerLink]="['/project', project.id]"></project-card-main>
     
   </div>

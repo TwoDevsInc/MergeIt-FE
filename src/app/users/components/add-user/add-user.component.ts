@@ -24,8 +24,6 @@ export class AddUserComponent implements OnInit {
   constructor(private teamService: TeamServiceService, private userService: UserService, public activeModal: NgbActiveModal) { }
 
   ngOnInit(): void {
-
-    console.log(this.team);
   }
 
   addUser(){
@@ -34,9 +32,8 @@ export class AddUserComponent implements OnInit {
         this.user.id = res.id;
         this.teamService.addUserToTeam(this.user, this.team).subscribe(
           res => {
-            // this.team.users.push(this.user);
+            this.team.users.push(this.user);
             this.activeModal.close();
-            window.location.reload();
           }
         );
       }

@@ -18,7 +18,7 @@ export class ProjectListMainComponent implements OnInit {
   ngOnInit(): void {
     this.projects = [];
     this.projectService.getProjectsByTeam(this.team).subscribe(
-      p => this.projects = p
+      p => this.team.projects = p
     )
     this.userService.getUserByTeam(this.team.id!).subscribe(
       u => this.count = u.length

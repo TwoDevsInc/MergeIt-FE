@@ -44,9 +44,14 @@ export class MainComponent implements OnInit {
       if(userLogged){
         this.teamService.getTeamsByUser(+userLogged).subscribe(
           r => {
-            this.loggedUser.teams = r;
-            // this.teams = r;
-            this.loggedUser.teams.forEach(t => t.projects = []);
+            this.userService.getUserById(+userLogged).subscribe(
+              userResp => {
+                this.loggedUser = userResp;
+                this.loggedUser.teams = r;
+                this.loggedUser.teams.forEach(t => t.projects = []);
+              }
+            )
+            
           }
         )
       }
@@ -72,7 +77,6 @@ export class MainComponent implements OnInit {
     modalRef.componentInstance.loggedUser = this.loggedUser;
 
     modalRef.result.then((result) => {
-      console.log(result);
     }, (reason) => {
 
     });
